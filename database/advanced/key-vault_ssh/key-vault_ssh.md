@@ -5,7 +5,7 @@ This workshop introduces the advanced features and functionality of Oracle Key V
 
 *Estimated Lab Time:* 35 minutes
 
-*Version tested in this lab:* Oracle OKV 21.13 and Oracle Linux 8.
+*Version tested in this lab:* Oracle OKV 21.12 and Oracle Linux 8.
 
 ### Video Preview
 Watch a preview of "*LiveLabs - Oracle Key Vault*" [](youtube:4VR1bbDpUIA)
@@ -60,43 +60,11 @@ This lab assumes you have:
 
             **Note**: This tab will be **the main one** for the duration of the lab
 
-        - **SSH Client** remote desktop (here *`db23ai`* with Private IP *`10.0.0.155`*)
+        - **SSH Client** workstation (here *`db23ai`* with Private IP *`10.0.0.155`*)
 
             ![Key Vault](./images/okv_ssh-002.png "SSH Server - NoVNC Remote Desktop")
          
-    - On the **SSH Server** remote desktop (on DBSeclab VM)
-
-        - Open a Terminal session *as opc* OS user
-
-            ```
-            <copy>
-            sudo su - opc
-            </copy>
-            ```
-
-            **Note**: If you are using a remote desktop session, double-click on the *Terminal* icon on the desktop to launch a session
-
-        - Make sure you have access to SSH Client (DB23ai VM) *as opc*
-
-            ```
-            <copy>
-            ssh -i ~/.ssh/id_rsa opc@10.0.0.155
-            </copy>
-            ```
-
-            ![Key Vault](./images/okv_ssh-003.png "SSH Server VM access to SSH Client VM")
-
-            **Note**: You must be successfully connected to db23ai VM!
-
-        - If so, please close the SSH session
-
-            ```
-            <copy>
-            exit
-            </copy>
-            ```
-
-    - On the **SSH Client** remote desktop (on DB23ai VM)
+    - On the **SSH Client** workstation (on DB23ai VM)
 
         - Open a Terminal session *as opc*
 
@@ -144,11 +112,11 @@ This lab assumes you have:
     
     - Copy the default password
     
-    - Open a web browser window to *`https://kv`* to access to the Key Vault Web Console
+    - Open a web browser window to *`https://kv`* to access the Key Vault Web Console
 
         **Note**: If you are not using the remote desktop you can also access this page by going to *`https://<OKV-VM_@IP-Public>`*
 
-    - Login to Key Vault Web Console as *`KVRESTADMIN`* (use the password randomly generated)
+    - Login to Key Vault Web Console as *`KVRESTADMIN`* (use the randomly generated password)
 
         ```
         <copy>
@@ -168,19 +136,9 @@ This lab assumes you have:
 
 
 ## Task 2: Set Remote Server Access Controls with OKV
-In this lab, we will introduce remote server access controls by centrally managing users public keys
+In this lab, we will introduce remote server access controls by centrally managing user's public keys.
 
-1. Go back on the **OKV Web Console** and logon as KVRESTADMIN with your new password
-
-    ```
-    <copy>
-    KVRESTADMIN
-    </copy>
-    ```
-
-    ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
-
-2. Create an SSH Server endpoint dbseclab as KVRESTADMIN
+1. Create an SSH Server endpoint **dbseclab**
 
     - Click on **Endpoints** tab
 
@@ -192,16 +150,16 @@ In this lab, we will introduce remote server access controls by centrally managi
 
     - Fill it out as following:
     
-        - Endpoint Name: *`dbseclab`*
-        - Type: *`SSH Server`*
-        - SSH Server Hostname: *`10.0.0.150`*
-        - Platform: *`Linux`*
+        - Endpoint Name (remote server hostname): `dbseclab`
+        - Type: `SSH Server`
+        - SSH Server Hostname: `10.0.0.150`
+        - Platform: `Linux`
 
             ![Key Vault](./images/okv_ssh-012.png "Add Endpoint - Form")
 
     - Click [**Register**]
 
-3. Create an SSH Server wallet **`opc_at_dbseclab`**
+2. Create an SSH Server wallet **`opc_at_dbseclab`**
 
     - Click on **Key & Wallets** tab
 
@@ -213,10 +171,10 @@ In this lab, we will introduce remote server access controls by centrally managi
 
     - Fill it out as following
     
-        - Name: *`opc_at_dbseclab`*
-        - Description: *`SSH Server wallet holding public keys of all SSH users who log in to "dbsec-lab" VM as "opc"`*
-        - Wallet Type: select *`SSH Server`*
-        - SSH Server Host user: *`opc`*
+        - Name: `opc_at_dbseclab`
+        - Description: `SSH Server wallet holding public keys of all SSH users who log in to "dbsec-lab" VM as "opc"`
+        - Wallet Type: select `SSH Server`
+        - SSH Server Host user: `opc`
 
             ![Key Vault](./images/okv_ssh-015.png "Key & Wallets - Form")
 
@@ -244,7 +202,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
     - Click **Endpoints** tab
 
-    - Copy the Enrollment Token of the **dbseclab** endpoint (here: eqczhRuFt5JNyqeU)
+    - Copy the Enrollment Token of the **dbseclab** endpoint.
     
         ![Key Vault](./images/okv_ssh-020.png "Copy Enrollment Token")
 
@@ -282,7 +240,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         - Close the file window
 
-5. Go back to **your terminal session on SSH Server** (DBSeclab VM) *as opc* to configure the OKV binaries
+5. Go back to **your terminal session on the remote server** (DBSeclab VM) *as opc* to install the SSH endpoint
 
     - Create the OKV repo (press "*enter*" for AUTO-LOGIN)
 
@@ -297,7 +255,7 @@ In this lab, we will introduce remote server access controls by centrally managi
         ![Key Vault](./images/okv_ssh-028.png "Create OKV repo")
 
         **Note**:
-        - The directory /opt/okv created will store the OKV binaries
+        - The /opt/okv directory will store the OKV client software
         - The jar file is deleted after the successfull installation
 
     - Modify OKV config file **okvsshendpoint.conf** to use *`opc_at_dbseclab`* as server wallet *as opc* user
@@ -313,7 +271,7 @@ In this lab, we will introduce remote server access controls by centrally managi
         sudo sed -i '/\[ user1 \]/,/^$/c\[ opc ]\nssh_server_wallet=opc_at_dbseclab\n' /opt/okv/conf/okvsshendpoint.conf && sudo grep -A 1 '\[ opc \]' /opt/okv/conf/okvsshendpoint.conf
         EOF
 
-        sudo chmod +x /tmp/set_okv_wallet.sh
+        sudo chmod u+x /tmp/set_okv_wallet.sh
         /tmp/set_okv_wallet.sh
         </copy>
         ```
