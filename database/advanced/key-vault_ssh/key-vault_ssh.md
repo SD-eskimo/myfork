@@ -307,9 +307,9 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-032.png "Confirm the changed settings have been activated by the SSH daemon:")
 
-5. Now, the owner of the remote server uploads the administrator’s public key to the **SSH Server wallet** in OKV.
+5. Now, the **owner** of the remote server uploads the administrator’s public key to the **SSH Server wallet** in OKV.
 
-    **Extract the administrator's public key** from the `authorized_keys` file:
+    - **Extract the administrator's public key** from the `authorized_keys` file:
 
         ```
         <copy>
@@ -318,9 +318,9 @@ In this lab, we will introduce remote server access controls by centrally managi
         </copy>
         ```
         
-        ![Key Vault](./images/okv_ssh-033.png "Extract the administrator's public key from the 'authorized_keys' file".)
+        ![Key Vault](./images/okv_ssh-033.png "Extract the administrator's public key from the authorized_keys file:")
 
-    **Convert the administrator's public key** from RSA to PKCS#8 format
+    - **Convert the administrator's public key** from RSA to PKCS#8 format
 
         ```
         <copy>
@@ -332,7 +332,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-034.png "Convert public key to PKCS8 format")
 
-    **Upload your public key** (in PKCS8 format) to OKV
+    - **Upload your public key** (in PKCS8 format) to OKV
 
         ```
         <copy>
@@ -342,7 +342,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-035.png "Upload public key to OKV")
 
-    **Confirm Set SELinux is set to `Permissive`**
+    - **Confirm Set SELinux is set to `Permissive`**
 
         ```
         <copy>
