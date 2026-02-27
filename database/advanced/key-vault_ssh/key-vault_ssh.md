@@ -246,10 +246,10 @@ In this lab, we will introduce remote server access controls by centrally managi
         ![Key Vault](./images/okv_ssh-028.png "Create OKV repo")
 
         **Note**:
-        - The /opt/okv directory stores the OKV client software.
-        - The installation process deletes the JAR file after a successful installation.
+        - The `/opt/okv` directory stores the OKV client software.
+        - The installation process **deletes the JAR file** after a successful installation.
 
-    - Modify the SSH Server endpoint configuration file **okvsshendpoint.conf** to associate an incoming `opc` user with the SSH Server wallet  `opc_at_dbseclab`.
+    - Modify the SSH Server endpoint configuration file `okvsshendpoint.conf` to associate an incoming `opc` user with the SSH Server wallet  `opc_at_dbseclab`.
     
         ```
         <copy>
@@ -307,9 +307,9 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-032.png "Confirm the changed settings have been activated by the SSH daemon:")
 
-5. Now, the owner of the remote server uploads the administrator's public key into the SSH Server wallet in OKV:
+5. Now, the owner of the remote server uploads the administrator’s public key to the **SSH Server wallet** in OKV.
 
-    **Extract the administrator's public key** from the `authorized_keys` file
+    **Extract the administrator's public key** from the `authorized_keys` file:
 
         ```
         <copy>
@@ -318,7 +318,7 @@ In this lab, we will introduce remote server access controls by centrally managi
         </copy>
         ```
         
-        ![Key Vault](./images/okv_ssh-033.png "Extract the administrator's public key from the 'authorized_keys' file")
+        ![Key Vault](./images/okv_ssh-033.png "Extract the administrator's public key from the 'authorized_keys' file".)
 
     **Convert the administrator's public key** from RSA to PKCS#8 format
 
@@ -352,7 +352,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-036.png "Confirm SELinux is set to Permissive")
 
-6. Go back on the **OKV Web Console** to change the Wallet Access mode to Read Only
+6. Go back on the **OKV Web Console** to reduce access of the SSH Server endpoint to the SSH Server Wallet to **Read Only**:
 
     - Log on to **OKV Web Console** as KVEPADMIN
 
@@ -364,7 +364,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
 
-    - Open **Key and Wallets** tab
+    - Click the **Key and Wallets** tab
 
     - Click on the wallet `opc_at_dbseclab` to confirm that your public key is there
 
@@ -384,7 +384,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
 7. Go back to **your terminal session on SSH Server** (DBSeclab VM) *as opc* to remove your SSH key pairs from the VM
 
-    - Move the old authorized_keys file as well as all **SSH keys into a backup directory**
+    - Move the `authorized_keys` file as well as all **SSH keys** into a hidden backup directory:
 
         ```
         <copy>
