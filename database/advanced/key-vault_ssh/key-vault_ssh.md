@@ -241,14 +241,14 @@ In this lab, we will introduce remote server access controls by centrally managi
         <copy>
         sudo mkdir -pvm700 /opt/okv
         export JAVA_HOME=/opt/oracle/product/23ai/dbhomeFree/jdk
-        sudo $JAVA_HOME/bin/java -jar /home/opc/Downloads/okvclient.jar -d /opt/okv        
+        sudo $JAVA_HOME/bin/java -jar /home/oracle/Downloads/okvclient.jar -d /opt/okv        
         </copy>
         ```
 
-        ![Key Vault](./images/okv_ssh-028.png "Create OKV repo")
+        ![Key Vault](./images/okv_ssh-028.png "Download and install the OKV SSH Server endpoint software into /opt/okv/ as root as an auto-open endpoint.")
 
         **Note**:
-        - The `/opt/okv` directory stores the OKV client software.
+        - The `/opt/okv/` directory stores the OKV client software.
         - The installation process **deletes the JAR file** after a successful installation.
 
     - Modify the SSH Server endpoint configuration file `okvsshendpoint.conf` to associate an incoming `opc` user with the SSH Server wallet  `opc_at_dbseclab`.
@@ -271,7 +271,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-029.png "Modify okvsshendpoint.conf")
 
-    - Modify `/etc/ssh/sshd_config' to redirect incoming SSH requests to Oracle Key Vault.
+    - Modify `/etc/ssh/sshd_config` to redirect incoming SSH requests to Oracle Key Vault.
     
         ```
         <copy>
@@ -452,7 +452,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 -->
 
 ## Task 3: Implement private key governance
-In this second part, we will manage administrators' private keys in OKV making those private keys non-extractable so that they cannt leave the OKV cluster boundary for maximum security, auditability and compliance enforcement.
+In this second part, we will manage administrator's private key in OKV making that private key non-extractable so that they cannt leave the OKV cluster boundary for maximum security, auditability and compliance enforcement.
 
 1. Go back on the **OKV Web Console** and logon as KVEPADMIN with your new password
 
