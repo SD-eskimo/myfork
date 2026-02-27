@@ -214,7 +214,9 @@ In this lab, we will introduce remote server access controls by centrally managi
         ![Key Vault](./images/okv_ssh-024.png "Logout")
 
         **Note**: If the token is valid, the other fields populate with the details previously entered during endpoint creation.
-    
+        
+        The software is automatically downloaded into the "Downloads" folder.
+<!--    
     - Download the **okvclient.jar** file to your remote server (dbseclab)
 
         - Click on the **Download icon** and click the **Show in folder** icon for the okvclient.jar file
@@ -230,7 +232,7 @@ In this lab, we will introduce remote server access controls by centrally managi
             ![Key Vault](./images/okv_ssh-027.png "Move the file to tmp")
 
         - Close the file window
-
+-->
 4. Go back to **your terminal session on the remote server** (dbseclab): The remote server owner has sudo privileges and can install the SSH Server endpoint.
 
     - Install the OKV client endpoint software with root privileges (press *enter* for AUTO-LOGIN)
@@ -239,7 +241,7 @@ In this lab, we will introduce remote server access controls by centrally managi
         <copy>
         sudo mkdir -pvm700 /opt/okv
         export JAVA_HOME=/opt/oracle/product/23ai/dbhomeFree/jdk
-        sudo $JAVA_HOME/bin/java -jar /tmp/okvclient.jar -d /opt/okv        
+        sudo $JAVA_HOME/bin/java -jar /home/opc/Downloads/okvclient.jar -d /opt/okv        
         </copy>
         ```
 
