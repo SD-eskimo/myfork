@@ -58,7 +58,7 @@ This lab assumes you have:
 
             ![Key Vault](./images/okv_ssh-001.png "Remote SSH Server")
 
-            **Note**: This tab will be **the main one** for the duration of the lab
+            **Note**: This tab will be your main workspace throughout the lab.
 
         - **SSH Client workstation** (here `db23ai` with Private IP `10.0.0.155`)
 
@@ -96,11 +96,11 @@ This lab assumes you have:
             </copy>
             ```
 
-    - You confirmed that, with a private/public SSH key pair present, you can connect from the client workstation (db23ai) to the remote server (dbsec-lab) without requiring a password.
+    - You confirmed that SSH key-based authentication is configured, allowing passwordless access from db23ai to dbsec-lab.
 
 2. **Reset the randomly generated password** (when you login to Oracle Key Vault console for the first time, you will be asked to change your password)
 
-    - On the **SSH Server** remote desktop (on DBSeclab VM), execute the following command to display the random OKV console password that has been generated for all OKV users during the deployment of the Livelabs and stored in the `wui_passphrase` file:
+    - On the SSH Server remote desktop (DBSeclab VM), run the command below to print the OKV Console password generated during LiveLabs deployment for all OKV users. The password is saved in the `wui_passphrase` file:
         ```
         <copy>
         cat /home/oracle/DBSecLab/livelabs/okv/wui_passphrase
@@ -213,7 +213,7 @@ In this lab, we will introduce remote server access controls by centrally managi
     
         ![Key Vault](./images/okv_ssh-024.png "Logout")
 
-        **Note**: If the token is valid, the other text fields are populated with the information that was entered earlier when the endpoint was created.
+        **Note**: If the token is valid, the other fields populate with the details previously entered during endpoint creation.
     
     - Download the **okvclient.jar** file to your remote server (dbseclab)
 
@@ -231,7 +231,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         - Close the file window
 
-4. Go back to **your terminal session on the remote server** (dbseclab): The owner of the remote server has sudo privileges and can install the SSH Server endpoint:
+4. Go back to **your terminal session on the remote server** (dbseclab): The remote server owner has sudo privileges and can install the SSH Server endpoint.
 
     - Install the OKV client endpoint software with root privileges (press *enter* for AUTO-LOGIN)
 
@@ -269,7 +269,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-029.png "Modify okvsshendpoint.conf")
 
-    - Modify the `sshd service` config file to allow OKV to use the authorized keys
+    - Modify `/etc/ssh/sshd_config' to redirect incoming SSH requests to Oracle Key Vault.
     
         ```
         <copy>
@@ -279,7 +279,7 @@ In this lab, we will introduce remote server access controls by centrally managi
         sudo grep -A 1 'AuthorizedKeysCommand' /etc/ssh/sshd_config
         echo
         echo ==== New Values ====
-        sudo sed -i -e 's|#AuthorizedKeysCommandUser nobody|AuthorizedKeysCommandUser root|' -e '|#AuthorizedKeysCommand none|s|.*|AuthorizedKeysCommand /opt/okv/bin/okv_ssh_ep_lookup_authorized_keys get_authorized_keys_for_user %u %f %k|' /etc/ssh/sshd_config && sudo grep -A 1 'AuthorizedKeysCommand' /etc/ssh/sshd_config
+        sudo sed -i -e 's|#AuthorizedKeysCommandUser nobody|AuthorizedKeysCommandUser root|' -e 's|#AuthorizedKeysCommand none|AuthorizedKeysCommand /opt/okv/bin/okv_ssh_ep_lookup_authorized_keys get_authorized_keys_for_user %u %f %k|' /etc/ssh/sshd_config && sudo grep -A 1 'AuthorizedKeysCommand' /etc/ssh/sshd_config
         EOF
 
         sudo chmod u+x /tmp/set_okv_sshd.sh
@@ -289,9 +289,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-030.png "Modify sshd_config")
 
-        **Note** Here we uncomment and change the 2 default lines **`#AuthorizedKeysCommand`** and **`#AuthorizedKeysCommandUser`** to use the authorized keys as **`root`** instead
-
-    - Restart sshd service to take account of the new settings
+    - Restart sshd service to activate the new settings
     
         ```
         <copy>
@@ -299,9 +297,7 @@ In this lab, we will introduce remote server access controls by centrally managi
         </copy>
         ```
 
-        ![Key Vault](./images/okv_ssh-031.png "Restart sshd service")
-
-    - Check the sshd service for keyscommand
+    - Confirm the changed settings have been activated by the SSH daemon:
     
         ```
         <copy>
@@ -309,9 +305,9 @@ In this lab, we will introduce remote server access controls by centrally managi
         </copy>
         ```
 
-        ![Key Vault](./images/okv_ssh-032.png "Check the sshd service for keyscommand")
+        ![Key Vault](./images/okv_ssh-032.png "Confirm the changed settings have been activated by the SSH daemon:")
 
-5. Now, the owner of the fremote server uploads the administrator's public key into the SSH Server wallet in OKV:
+5. Now, the owner of the remote server uploads the administrator's public key into the SSH Server wallet in OKV:
 
     **Extract the administrator's public key** from the `authorized_keys` file
 
@@ -340,7 +336,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ```
         <copy>
-        sudo /opt/okv/bin/okvutil upload -l /home/opc/.ssh/id_pkcs8_ADMIN.pub -t SSH_PUBLIC_KEY -U opc -g opc_at_dbseclab -L 2048
+        sudo /opt/okv/bin/okvutil upload -l /home/opc/.ssh/id_pkcs8_ADMIN.pub -U opc -t SSH_PUBLIC_KEY -g opc_at_dbseclab -L 2048
         </copy>
         ```
 
