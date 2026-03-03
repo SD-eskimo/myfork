@@ -322,7 +322,7 @@ In this lab, we will introduce remote server access controls by centrally managi
         
         ![Key Vault](./images/okv_ssh-033.png "Extract the administrator's public key from the authorized_keys file:")
 
-    - **Convert the administrator's public key** the RSA to the more modern PKCS#8 format
+    - **Convert the administrator's public key** from the specific RSA format to the more universal PKCS#8 format:
 
         ```
         <copy>
@@ -390,7 +390,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ```
         <copy>
-        sudo mkdir -pvm700 ~/.ssh/.backup
+        mkdir -pvm700 ~/.ssh/.backup
         sudo mv -v ~/.ssh/!(known_hosts) ~/.ssh/.backup
         tree -n ./.ssh/
         </copy>
@@ -442,9 +442,9 @@ In this lab, we will introduce remote server access controls by centrally managi
 -->
 
 ## Task 3: Implement private key governance
-In this second part, we will manage administrator's private key in OKV making that private key non-extractable so that they cannt leave the OKV cluster boundary for maximum security, auditability and compliance enforcement.
+In this second part, we will manage administrator's private key in OKV making that private key non-extractable so that it cannot leave the OKV cluster boundary for maximum security, auditability and compliance enforcement.
 
-1. Go back on the **OKV Web Console** and logon as KVEPADMIN with your new password
+1. Go back on the **OKV Web Console** and logon as KVEPADMIN with your new password:
 
     ```
     <copy>
@@ -455,7 +455,7 @@ In this second part, we will manage administrator's private key in OKV making th
     ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
 
 
-2. Create a Wallet that will store an SSH key pair for you
+2. Create a Wallet that will store an SSH key pair for the administrator:
 
     - Click on **Keys & Wallets** tab; then click [**Create**]
 
@@ -464,7 +464,7 @@ In this second part, we will manage administrator's private key in OKV making th
     - Fill it out as following:
     
         - Name: `ADMIN_SSH_KEYS`
-        - Description: `Contains administrators non-extractable private, and public keys to log in to remote machines`
+        - Description: `Contains administrator's non-extractable private, and public keys to log in to remote machines`
         - Wallet Type: select `General`
 
         ![Key Vault](./images/okv_ssh-049.png "Create Wallet - Form")
@@ -487,15 +487,15 @@ In this second part, we will manage administrator's private key in OKV making th
 
     - Click [**Register**]
 
-4. Create an SSH Server wallet **`opc_at_dbseclab`**
+4. Allow the Admin endpoint read-only access to the admin wallet:
 
-    - Click on **Keys & Wallets** tab and click on the wallet name *`MY_SSH_KEYS`*
+    - Click on **Keys & Wallets** tab and click on the wallet name `ADMIN_SSH_KEYS`
 
-        ![Key Vault](./images/okv_ssh-052.png "Open the Wallet")
+        ![Key Vault](./images/okv_ssh-052.png "click on the wallet name ADMIN_SSH_KEYS")
 
-    - Then click on the **"Edit" pencil** in **Access Settings**
+    - Then click on the **"Edit"** pencil in **Access Settings**
 
-        ![Key Vault](./images/okv_ssh-053.png "Edit the Wallet")
+        ![Key Vault](./images/okv_ssh-053.png "Change Access Settings")
 
     - In **Wallet Access Settings**, click [**Add**]
 
