@@ -322,19 +322,19 @@ In this lab, we will introduce remote server access controls by centrally managi
         
         ![Key Vault](./images/okv_ssh-033.png "Extract the administrator's public key from the authorized_keys file:")
 
-    - **Convert the administrator's public key** from RSA to PKCS#8 format
+    - **Convert the administrator's public key** the RSA to the more modern PKCS#8 format
 
         ```
         <copy>
-        sudo cat /home/opc/.ssh/id_rsa_ADMIN.pub
+        cat /home/opc/.ssh/id_rsa_ADMIN.pub
         sudo ssh-keygen -e -m PKCS8 -f /home/opc/.ssh/id_rsa_ADMIN.pub > /home/opc/.ssh/id_pkcs8_ADMIN.pub
-        sudo cat /home/opc/.ssh/id_pkcs8_ADMIN.pub
+        cat /home/opc/.ssh/id_pkcs8_ADMIN.pub
         </copy>
         ```
 
         ![Key Vault](./images/okv_ssh-034.png "Convert public key to PKCS8 format")
 
-    - **Upload your public key** (in PKCS8 format) to OKV
+    - **Upload the administrator's public key** (in PKCS#8 format) to OKV
 
         ```
         <copy>
@@ -368,9 +368,9 @@ In this lab, we will introduce remote server access controls by centrally managi
 
     - Click the **Key and Wallets** tab
 
-    - Click on the wallet `opc_at_dbseclab` to confirm that your public key is there
+    - Click on the SSH Server wallet `opc_at_dbseclab` to confirm that the administrator's public key is this wallet.
 
-    - Click on the **"Edit"** pencil next to Access Settings
+    - Click on the **"Edit"** pencil
 
         ![Key Vault](./images/okv_ssh-038.png "Edit Access settings")
 
@@ -382,33 +382,23 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ![Key Vault](./images/okv_ssh-040.png "Deselect the Manage Wallet privilege")
 
-    - From now on, the dbseclab endpoint has only **Read Only** privileges on the SSH Server wallet `opc_at_dbseclab`
+    - From now on, the dbseclab SSH Server endpoint has only **Read Only** privileges on the SSH Server wallet `opc_at_dbseclab`
 
-7. Go back to **your terminal session on SSH Server** (DBSeclab VM) *as opc* to remove your SSH key pairs from the VM
+7. Go back to **your terminal session on SSH Server** (DBSeclab VM) where the owner of the remote server removes the adminisatrator's public and the `authorized_keys` file.
 
-    - Move the `authorized_keys` file as well as all **SSH keys** into a hidden backup directory:
+    - Move the `authorized_keys` file as well as all **SSH keys** into a hidden backup directory, leaving only the `known_hosts` file intact:
 
         ```
         <copy>
-        sudo mkdir -pv ~/.ssh/.backup
-        sudo mv -v ~/.ssh/authorized_keys ~/.ssh/.backup
-        sudo mv -v ~/.ssh/id_* ~/.ssh/.backup
+        sudo mkdir -pvm700 ~/.ssh/.backup
+        sudo mv -v ~/.ssh/!(known_hosts) ~/.ssh/.backup
+        tree -n ./.ssh/
         </copy>
         ```
 
         ![Key Vault](./images/okv_ssh-041.png "Backup SSH keys")
 
-    - Double-check that **administrator's public key and the authorized_keys file** are no longer available:
-
-        ```
-        <copy>
-        sudo tree -n ~/.ssh
-        </copy>
-        ```
-
-        ![Key Vault](./images/okv_ssh-042.png "Check the SSH key are no longer accessible")
-
-8. Go back to **your terminal session on SSH Client** (DB23ai VM) *as opc* and log into the remote server `dbsec-lab` with the same command that was used at the very beginning of this lab:
+8. Go back to **your terminal session on the SSH Client** (DB23ai VM) *as opc* and log into the remote server `dbsec-lab` with the same command that was used at the very beginning of this lab:
 
     ```
     <copy>
