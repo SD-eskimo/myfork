@@ -464,7 +464,7 @@ In this second part, we will manage administrator's private key in OKV making th
     - Fill it out as following:
     
         - Name: `ADMIN_SSH_KEYS`
-        - Description: `Contains administrator's non-extractable private, and public keys to log in to remote machines`
+        - Description: `Contains administrator's non-extractable private, and public keys to log in to remote machines.`
         - Wallet Type: select `General`
 
         ![Key Vault](./images/okv_ssh-049.png "Create Wallet - Form")
@@ -479,9 +479,10 @@ In this second part, we will manage administrator's private key in OKV making th
 
     - Fill it out as following:
     
-        - Endpoint Name: `DB23AI`
+        - Endpoint Name: `ADMIN_WORKSTATION_SSH`
         - type: `Other`
         - Platform: Select `Linux`
+        - Description" `Endpoint with read-only access to non-extractable private, and public keys in wallet ADMIN_SSH_KEYS.`
 
         ![Key Vault](./images/okv_ssh-051.png "Create Endpoint - Form")
 
@@ -501,17 +502,13 @@ In this second part, we will manage administrator's private key in OKV making th
 
         ![Key Vault](./images/okv_ssh-054.png "Add Wallet Access")
 
-    - Select *Endpoints* from the drop-down menu
-
-        ![Key Vault](./images/okv_ssh-055.png "Select Endpoints")
-
-    - Click the checkbox next to *DB23AI* endpoint and confirm **only** *Read Only* is selected
+    - Select **Endpoints** from the drop-down menu and click the checkbox next to `ADMIN_WOKSTATION_SSH` endpoint, and confirm **Read Only** is selected
 
         ![Key Vault](./images/okv_ssh-056.png "Set Endpoint")
 
     - Click [**Save**]
 
-    - Open **Keys & Secrets** sub-menu on the left and click [**Create**]
+    - Click on **Keys & Secrets** on the left and click [**Create**]
 
         ![Key Vault](./images/okv_ssh-057.png "Create Keys")
 
@@ -521,39 +518,37 @@ In this second part, we will manage administrator's private key in OKV making th
 
     - Fill it out as following:
     
-        - SSH User: *ADMIN*
-        - Wallet Membership:  click [Select Wallet] to select the Wallet that you just created (here *`MY_SSH_KEYS`*)
-
-        ![Key Vault](./images/okv_ssh-059.png "Create Keys - Form")
-    
-        **Note**:
+        - SSH User: `ADMIN`
+        - Wallet Membership:  click [Select Wallet] to select the Wallet that you just created (here `ADMIN_SSH_KEYS`)
         - Leave the other values as they are
         - Note that the private key is set to NON-EXTRACTABLE by default; it is not allowed to leave the OKV cluster boundary
         - The deactivation time is set to 2 years from now
+
+        ![Key Vault](./images/okv_ssh-059.png "Create Keys - Form")
     
     - Click [**Create**]
     
-    - Click on the **Wallets** submenu on the left, and click on *`MY_SSH_KEYS`*
+    - Click on **Wallets** on the left, and click on `ADMIN_SSH_KEYS`
     
         ![Key Vault](./images/okv_ssh-060.png "Open the Wallet")
 
-    - Under **Wallet Contents**, click on the key-ID of the **public key**
+    - Under **Wallet Contents**, move the horizontal slider to the right and click on the key-ID of the **public key**.
     
-        ![Key Vault](./images/okv_ssh-061.png "Open the Keys")
+        ![Key Vault](./images/okv_ssh-061.png "See details of public key.")
 
     - Click [**Add Wallet Membership**]
     
         ![Key Vault](./images/okv_ssh-062.png "Add Wallet Membership")
 
-    - Click the check box of the SSH Server wallet *`opc_at_dbseclab`*
+    - Click the check box to add the public key to the SSH Server wallet `opc_at_dbseclab`.
     
-        ![Key Vault](./images/okv_ssh-063.png "Add the SSH Server Wallet")
+        ![Key Vault](./images/okv_ssh-063.png "Add the public key to the SSH Server Wallet")
 
     - Click [**Add**]
 
 4. Download the OKV Client binaries
 
-    - Click on Endpoints tab, then copy the enrollment token (here: RpaVoiAwxcMbmDF5)
+    - Click on Endpoints tab, then copy the enrollment token
 
         ![Key Vault](./images/okv_ssh-064.png "Copy enrollment token")
 
@@ -565,17 +560,16 @@ In this second part, we will manage administrator's private key in OKV making th
     
         ![Key Vault](./images/okv_ssh-022.png "Software Download")
 
-    - On this page, **paste the enrollment token** into the text field
+    - On this page, **paste the enrollment token** into the text field and click [**Submit Token**]
+    **Note**: If the token is valid, the other text fields are populated with the information that was entered earlier when the endpoint was created.
     
-        ![Key Vault](./images/okv_ssh-065.png "Paste Enrollment Token")
+        ![Key Vault](./images/okv_ssh-065.png "Submit the Enrollment Token")
 
-    - Click [**Submit Token**], then click [**Enroll**]
+    - Click [**Enroll**]
     
         ![Key Vault](./images/okv_ssh-066.png "Logout")
 
-        **Note**: If the token is valid, the other text fields are populated with the information that was entered earlier when the endpoint was created.
-    
-    - Download the **okvclient.jar** file **into /tmp on DBSECLAB VM**
+      - Download the **okvclient.jar** file **into /tmp on DBSECLAB VM**
 
         - Open the Downloads page from your web browser by clicking on the **Download icon** and select the **Open in the folder icon** for the okvclient.jar file
 
