@@ -482,7 +482,7 @@ In this second part, we will manage administrator's private key in OKV making th
         - Endpoint Name: `ADMIN_WORKSTATION_SSH`
         - type: `Other`
         - Platform: Select `Linux`
-        - Description" `Endpoint with read-only access to non-extractable private, and public keys in wallet ADMIN_SSH_KEYS.`
+        - Description: `Endpoint with read-only access to non-extractable private, and public keys in wallet ADMIN_SSH_KEYS.`
 
         ![Key Vault](./images/okv_ssh-051.png "Create Endpoint - Form")
 
@@ -530,7 +530,7 @@ In this second part, we will manage administrator's private key in OKV making th
     
     - Click on **Wallets** on the left, and click on `ADMIN_SSH_KEYS`
     
-        ![Key Vault](./images/okv_ssh-060.png "Open the Wallet")
+        ![Key Vault](./images/okv_ssh-060.png "Access the Wallet")
 
     - Under **Wallet Contents**, move the horizontal slider to the right and click on the key-ID of the **public key**.
     
