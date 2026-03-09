@@ -579,15 +579,15 @@ In this second part, we will manage administrator's private key in OKV making th
 
             ![Key Vault](./images/okv_ssh-026.png "Move the file")
 
-        - Browse to *`/tmp`* and click [**Select**]
+        - Browse to `/tmp` and click [**Select**]
 
             ![Key Vault](./images/okv_ssh-027.png "Move the file to tmp")
 
         - Close the file window
 
-5. Go back to **your terminal session on SSH Client** (DB23ai VM) *as opc* to configure the OKV binaries
+5. Go back to **your terminal session on SSH Client** (DB23ai VM) `as opc` to configure the OKV binaries
 
-    - Move okvclient.jar file **into /tmp from DBSeclab VM to DB23ai VM**
+    - Copy okvclient.jar file **into /tmp from DBSeclab VM to DB23ai VM**
 
         ```
         <copy>
