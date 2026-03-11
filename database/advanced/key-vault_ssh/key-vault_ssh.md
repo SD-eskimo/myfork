@@ -368,15 +368,16 @@ In this lab, we will introduce remote server access controls by centrally managi
 
     - From now on, the dbseclab SSH Server endpoint has only **Read Only** privileges on the SSH Server wallet `opc_at_dbseclab`
 
-7. Go back to **your terminal session on SSH Server** (DBSeclab VM) where the owner of the remote server removes the administrator's public keys and the `authorized_keys` file.
+7. Go back to **your terminal session on SSH Server** (DBSeclab VM) where the owner of the remote server switches to the `opc` user and removes the administrator's public keys and the `authorized_keys` file:
 
-    - Move the `authorized_keys` file as well as all **SSH keys** into a hidden backup directory, leaving only the `known_hosts` file intact:
+    - Move the `authorized_keys` file as well as **all SSH keys** into a hidden backup directory, leaving only the `known_hosts` file intact:
 
         ```
         <copy>
-        mkdir -pvm700 /home/opc/.ssh/.backup
-        sudo mv /home/opc/.ssh/!(known_hosts) /home/opc/.ssh/.backup
-        tree -n /home/opc/.ssh/
+        sudo su - opc
+        sudo mkdir -pvm700 ~/.ssh/.backup
+        sudo mv ~/home/opc~/.ssh/!(known_hosts) ~/.ssh/.backup
+        sudo tree -n ~/.ssh/
         </copy>
         ```
 
