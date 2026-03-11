@@ -64,17 +64,18 @@ This lab assumes you have:
 
             ![Key Vault](./images/okv_ssh-002.png "Admin workstation")
          
-    - On the **SSH Client workstation** (on DB23ai VM)
+    - On the **SSH Client workstation** (on DB23ai VM):
 
-        - Open a Terminal session and switch to user *opc*
+      **Note**: If you are using a remote desktop session, click on *Activities* (top left corner of the desktop), then click on the *Terminal* icon to launch a session.
+
+
+        - Switch to user *opc*
 
             ```
             <copy>
             sudo su - opc
             </copy>
             ```
-
-            **Note**: If you are using a remote desktop session, double-click on the *Terminal* icon on the desktop to launch a session
 
         - Make sure you have access to SSH Server (DBSeclab VM) *as opc*
 
@@ -88,7 +89,7 @@ This lab assumes you have:
 
             **Note**: You must be successfully connected to dbsec-lab VM!
 
-        - If so, please close the SSH session
+        - If so, close the SSH session:
 
             ```
             <copy>
@@ -96,7 +97,7 @@ This lab assumes you have:
             </copy>
             ```
 
-    - You confirmed that SSH key-based authentication is configured, allowing passwordless access from db23ai to dbsec-lab.
+    - You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db23ai to remote server dbsec-lab.
 
 2. **Reset the randomly generated password** (when you login to Oracle Key Vault console for the first time, you will be asked to change your password)
 
@@ -129,7 +130,7 @@ This lab assumes you have:
     - Click [**Save**]
 
 ## Task 2: Set Remote Server Access Controls with OKV
-In this lab, we will introduce remote server access controls by centrally managing user's public keys in OKV.
+In this lab, we will introduce remote server access controls by centrally managing user's public key in OKV.
 
 1. Create an SSH Server endpoint **dbseclab**
 
@@ -166,7 +167,7 @@ In this lab, we will introduce remote server access controls by centrally managi
     - Fill it out as following
     
         - Name: `opc_at_dbseclab`
-        - Description: `SSH Server wallet holding public keys of all SSH users who log in to remote server "dbseclab" as "opc"`
+        - Description: `SSH Server wallet holding public keys of all SSH users who log in to remote server "dbseclab" as "opc".`
         - Wallet Type: select `SSH Server`
         - SSH Server Host user: `opc`
 
@@ -174,7 +175,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
     - Click [**Save**]
 
-    - Click on the **"Edit" pencil icon** to the right
+    - Click on the **"Edit"** pencil icon to the right
 
         ![Key Vault](./images/okv_ssh-016.png "Key & Wallets - Edit")
 
@@ -296,11 +297,11 @@ In this lab, we will introduce remote server access controls by centrally managi
 
 5. Now, the **owner** of the remote server uploads the administrator’s public key to the **SSH Server wallet** in OKV.
 
-    - **Extract the administrator's public key** from the `authorized_keys` file:
+    - **Extract the administrator's public key** from the `authorized_keys` file; it is displayed in the specific RSA format:
 
         ```
         <copy>
-        sudo grep "opc@db23ai" /home/opc/.ssh/authorized_keys > /home/opc/.ssh/id_rsa_ADMIN.pub
+        sudo grep "opc@db23ai" /home/opc/.ssh/authorized_keys | sudo tee /home/opc/.ssh/id_rsa_ADMIN.pub
         </copy>
         ```
         
@@ -310,9 +311,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ```
         <copy>
-        cat /home/opc/.ssh/id_rsa_ADMIN.pub
-        sudo ssh-keygen -e -m PKCS8 -f /home/opc/.ssh/id_rsa_ADMIN.pub > /home/opc/.ssh/id_pkcs8_ADMIN.pub
-        cat /home/opc/.ssh/id_pkcs8_ADMIN.pub
+        sudo ssh-keygen -e -m PKCS8 -f /home/opc/.ssh/id_rsa_ADMIN.pub | sudo tee /home/opc/.ssh/id_pkcs8_ADMIN.pub
         </copy>
         ```
 
@@ -332,6 +331,8 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ```
         <copy>
+        getenforce
+        sudo setenforce 0
         getenforce
         </copy>
         ```
@@ -353,8 +354,7 @@ In this lab, we will introduce remote server access controls by centrally managi
     - Click the **Key and Wallets** tab
 
     - Click on the SSH Server wallet `opc_at_dbseclab` to confirm that the administrator's public key is this wallet.
-
-    - Click on the **"Edit"** pencil
+    - Under **Access Settings**, click on the **"Edit"** pencil:
 
         ![Key Vault](./images/okv_ssh-038.png "Edit Access settings")
 
@@ -368,15 +368,15 @@ In this lab, we will introduce remote server access controls by centrally managi
 
     - From now on, the dbseclab SSH Server endpoint has only **Read Only** privileges on the SSH Server wallet `opc_at_dbseclab`
 
-7. Go back to **your terminal session on SSH Server** (DBSeclab VM) where the owner of the remote server removes the adminisatrator's public and the `authorized_keys` file.
+7. Go back to **your terminal session on SSH Server** (DBSeclab VM) where the owner of the remote server removes the administrator's public keys and the `authorized_keys` file.
 
     - Move the `authorized_keys` file as well as all **SSH keys** into a hidden backup directory, leaving only the `known_hosts` file intact:
 
         ```
         <copy>
-        mkdir -pvm700 ~/.ssh/.backup
-        sudo mv -v ~/.ssh/!(known_hosts) ~/.ssh/.backup
-        tree -n ./.ssh/
+        mkdir -pvm700 /home/opc/.ssh/.backup
+        sudo mv /home/opc/.ssh/!(known_hosts) /home/opc/.ssh/.backup
+        tree -n /home/opc/.ssh/
         </copy>
         ```
 
@@ -386,7 +386,7 @@ In this lab, we will introduce remote server access controls by centrally managi
 
     ```
     <copy>
-    ssh -i ~/.ssh/id_rsa opc@dbsec-lab
+    ssh -i ~/.ssh/id_rsa opc@10.0.0.150
     exit
     </copy>
     ```
