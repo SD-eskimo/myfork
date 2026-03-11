@@ -375,9 +375,9 @@ In this lab, we will introduce remote server access controls by centrally managi
         ```
         <copy>
         sudo su - opc
-        sudo mkdir -pvm700 ~/.ssh/.backup
-        sudo mv ~/home/opc~/.ssh/!(known_hosts) ~/.ssh/.backup
-        sudo tree -n ~/.ssh/
+        mkdir -pvm700 /home/opc/.ssh/.backup
+        mv /home/opc/.ssh/!(known_hosts) /home/opc/.ssh/.backup
+        tree -n /home/opc/.ssh/
         </copy>
         ```
 
@@ -392,9 +392,9 @@ In this lab, we will introduce remote server access controls by centrally managi
     </copy>
     ```
 
-    ![Key Vault](./images/okv_ssh-042b.png "SSH Client VM access to SSH Server VM")
+    ![Key Vault](./images/okv_ssh-004.png "SSH Client VM access to SSH Server VM")
 
-    **Note**: Even if the administrator's public key is no longer in the `authorized_keys` file, the remote server has access to her public key in the SSH Server wallet in OKV, and the login will succeed; the administrator does not suffer from downtime, and nothing changes on her side.
+    **Note**: Even though the administrator's public key is no longer in the `authorized_keys` file, the remote server has access to her public key in the SSH Server wallet in OKV, and the login will succeed; the administrator does not suffer from downtime, and nothing changes on her side.
 
 <!--
 9. Go back on the **OKV Web Console** to remove the public key from the SSH Server Wallet
@@ -554,8 +554,8 @@ In this second part, we will manage administrator's private key in OKV making th
     
         ![Key Vault](./images/okv_ssh-066.png "Logout")
 
-      - Download the **okvclient.jar** file **into /tmp on DBSECLAB VM**
-
+      - The **okvclient.jar** file is downloaded into `/home/oracle/Downloads/` on DBSECLAB VM
+<!--
         - Open the Downloads page from your web browser by clicking on the **Download icon** and select the **Open in the folder icon** for the okvclient.jar file
 
             ![Key Vault](./images/okv_ssh-025.png "Show download folder")
@@ -569,10 +569,19 @@ In this second part, we will manage administrator's private key in OKV making th
             ![Key Vault](./images/okv_ssh-027.png "Move the file to tmp")
 
         - Close the file window
+-->
+   - Move the **okvclient.jar** file from `/home/oracle/Downloads/` to `/tmp`:
+
+        ```
+        <copy>
+        sudo mv -v /home/oracle/Downloads/okvclient.jar /tmp
+        </copy>
+        ```
+
 
 5. Go back to **your terminal session on SSH Client** (DB23ai VM) `as opc` to configure the OKV binaries
 
-    - Copy okvclient.jar file **into /tmp from DBSeclab VM to DB23ai VM**
+    - Copy okvclient.jar file **from DBSeclab:/tmp** to **DB23ai:/tmp**
 
         ```
         <copy>
@@ -588,7 +597,6 @@ In this second part, we will manage administrator's private key in OKV making th
 
         ```
         <copy>
-        cd
         export JAVA_HOME=/opt/oracle/product/23ai/dbhomeFree/jdk
         $JAVA_HOME/bin/java -jar /tmp/okvclient.jar -d .
         </copy>
@@ -600,7 +608,7 @@ In this second part, we will manage administrator's private key in OKV making th
         - The OKV client binaries are installed under opc's home directory
         - The jar file is deleted after the successfull installation
 
-    - Verify that DB23AI endpoint can see the SSH key pair that KVRESTADMIN created
+    - Verify that DB23AI endpoint can see the SSH key pair that KVEPADMIN created; the private key is confirmed to be non-extractable:
 
         ```
         <copy>
@@ -612,28 +620,18 @@ In this second part, we will manage administrator's private key in OKV making th
 
 6. Now, let's remove your SSH key pairs from the VM
 
-    - Move the old authorized_keys file as well as all **SSH keys into a hidden backup directory**
+    - Move the old authorized_keys file as well as all **SSH keys into a hidden backup directory** and confirm that `known_hosts` remains intact:
 
         ```
         <copy>
         mkdir -pv /home/opc/.ssh/.backup
         mv -v /home/opc/.ssh/authorized_keys /home/opc/.ssh/.backup
         mv -v /home/opc/.ssh/id_* /home/opc/.ssh/.backup
+        tree -n ~/.ssh/
         </copy>
         ```
 
         ![Key Vault](./images/okv_ssh-070.png "Backup SSH Keys")
-
-    - Double-check that **SSH key pair are no longer available**
-
-        ```
-        <copy>
-        tree -n /home/opc/.ssh
-        </copy>
-        ```
-
-        ![Key Vault](./images/okv_ssh-071.png "Check the SSH key are no longer accessible")
-
 
 ## Task 4: SSH Key Management with OKV
 
@@ -655,8 +653,6 @@ In this second part, we will manage administrator's private key in OKV making th
     exit
     </copy>
     ```
-
-    ![Key Vault](./images/okv_ssh-101.png "Close connection to DBSECLAB from DB23AI")
 
 3. **Add OKV SSH key** (enter *`NULL`* **explicitly** as passphrase)
 
