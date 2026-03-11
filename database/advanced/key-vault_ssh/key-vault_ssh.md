@@ -54,7 +54,7 @@ This lab assumes you have:
 
     - Click on each Remote Desktop link available in the Labs details to open web browser tabs for each of them.
 
-        - **Remote SSH Server** desktop (here *`dbsec-lab`* with Private IP *`10.0.0.150`*)
+        - **Remote SSH Server** desktop (here `dbsec-lab` with Private IP `10.0.0.150`)
 
             ![Key Vault](./images/okv_ssh-001.png "Remote SSH Server")
 
@@ -80,7 +80,7 @@ This lab assumes you have:
 
             ```
             <copy>
-            ssh -i ~/.ssh/id_rsa opc@dbsec-lab
+            ssh -i ~/.ssh/id_rsa opc@10.0.0.150
             </copy>
             ```
 
@@ -100,7 +100,7 @@ This lab assumes you have:
 
 2. **Reset the randomly generated password** (when you login to Oracle Key Vault console for the first time, you will be asked to change your password)
 
-    - On the SSH Server remote desktop (DBSeclab VM), run the command below to print the OKV Console password generated during LiveLabs deployment for all OKV users. The password is saved in the `wui_passphrase` file:
+    - On the SSH Server remote desktop (DBSeclab VM), run the command below to see the random OKV Console password that has been generated during LiveLabs provisioning for all OKV users. The password is saved in the `wui_passphrase` file:
         ```
         <copy>
         cat /home/oracle/DBSecLab/livelabs/okv/wui_passphrase
@@ -147,8 +147,9 @@ In this lab, we will introduce remote server access controls by centrally managi
         - Type: `SSH Server`
         - SSH Server Hostname: `10.0.0.150`
         - Platform: `Linux`
+        - Discription: `SSH Server Endpoint on remote server that provides access to one or more SSH Server wallets; one SSH Server wallet for each user on the remote server.`
 
-            ![Key Vault](./images/okv_ssh-012.png "Add Endpoint - Form")
+        ![Key Vault](./images/okv_ssh-012.png "Add Endpoint - Form")
 
     - Click [**Register**]
 
@@ -216,24 +217,8 @@ In this lab, we will introduce remote server access controls by centrally managi
         **Note**: If the token is valid, the other fields populate with the details previously entered during endpoint creation.
         
         The software is automatically downloaded into the "Downloads" folder.
-<!--    
-    - Download the **okvclient.jar** file to your remote server (dbseclab)
 
-        - Click on the **Download icon** and click the **Show in folder** icon for the okvclient.jar file
-
-            ![Key Vault](./images/okv_ssh-025.png "Show download folder")
-
-        - Right click on the jar file and select `Move to...`
-
-            ![Key Vault](./images/okv_ssh-026.png "Move the file")
-
-        - Navigate to `/tmp` and click [**Select**]
-
-            ![Key Vault](./images/okv_ssh-027.png "Move the file to tmp")
-
-        - Close the file window
--->
-4. Go back to **your terminal session on the remote server** (dbseclab): The remote server owner has sudo privileges and can install the SSH Server endpoint.
+4. Go back to **your terminal session on the remote server** (dbseclab): Only the remote server owner has sudo privileges and can install the SSH Server endpoint:
 
     - Install the OKV client endpoint software with root privileges (press *enter* for AUTO-LOGIN)
 
@@ -245,7 +230,7 @@ In this lab, we will introduce remote server access controls by centrally managi
         </copy>
         ```
 
-        ![Key Vault](./images/okv_ssh-028.png "Download and install the OKV SSH Server endpoint software into /opt/okv/ as root as an auto-open endpoint.")
+        ![Key Vault](./images/okv_ssh-028.png "Install the OKV SSH Server endpoint software into /opt/okv/ as root as an auto-open endpoint.")
 
         **Note**:
         - The `/opt/okv/` directory stores the OKV client software.
@@ -315,7 +300,6 @@ In this lab, we will introduce remote server access controls by centrally managi
 
         ```
         <copy>
-        cd
         sudo grep "opc@db23ai" /home/opc/.ssh/authorized_keys > /home/opc/.ssh/id_rsa_ADMIN.pub
         </copy>
         ```
