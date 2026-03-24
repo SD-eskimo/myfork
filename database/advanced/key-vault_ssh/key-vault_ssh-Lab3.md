@@ -54,13 +54,13 @@ This lab assumes you have:
 
     - Click on each Remote Desktop link available in the Labs details to open web browser tabs for each of them.
 
-        - **Remote SSH Server** desktop (here `dbsec-lab` with Private IP `10.0.0.150`)
+    - **Remote SSH Server** desktop (here `dbsec-lab` with Private IP `10.0.0.150`)
 
-            ![Key Vault](./images/okv_ssh-001.png "Remote SSH Server")
+        ![Key Vault](./images/okv_ssh-001.png "Remote SSH Server")
 
-            **Note**: This tab will be your main workspace throughout the lab.
+        **Note**: This tab will be your main workspace throughout the lab.
 
-        - **SSH Client workstation** (here `db23ai` with Private IP `10.0.0.155`)
+    - **SSH Client workstation** (here `db23ai` with Private IP `10.0.0.155`)
 
             ![Key Vault](./images/okv_ssh-002.png "Admin workstation")
          
