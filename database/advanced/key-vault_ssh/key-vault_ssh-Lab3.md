@@ -1,52 +1,9 @@
 # Oracle Key Vault (OKV) - SSH Key Management
 
-## Introduction
-This workshop introduces the advanced features and functionality of Oracle Key Vault (OKV). It gives the user an opportunity to learn how to configure this appliance to manage SSH keys.
+## Lab 3
+In Lab 3 you will confirm that unmanaged SSH public key authentication allows you to login to a remote server (dbseclab) from your workstation (db26ai) without knowiung the remote server password. 
 
-*Estimated Lab Time:* 35 minutes
-
-*Version tested in this lab:* Oracle OKV 21.13 and Oracle Linux 8.
-
-### Video Preview
-Watch a preview of "*LiveLabs - Oracle Key Vault*" [](youtube:4VR1bbDpUIA)
-
-### Objectives
-- An administrator connects to a remote server by using an SSH key pair created and stored in Oracle Key Vault.
-
-### Prerequisites
-This lab assumes you have:
-<if type="brown">
-- A Free Tier, Paid or LiveLabs Oracle Cloud account
-- You have completed:
-    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
-    - Lab: Environment Setup
-    - Lab: Initialize Environment
-</if>
-<if type="green">
-- An Oracle Cloud account
-- You have completed:
-    - Introduction Tasks
-</if>
-
-### Lab Timing (estimated)
-
-<if type="brown">
-| Step No. | Feature                                    | Approx. Time | Details |
-| -------- | ------------------------------------------ | ------------ | ------- |
-| 1        | Mandatory Prerequisites                  | 5 minutes    |         |
-| 2        | Set Remote Server Access Controls with OKV | 10 minutes   |         |
-| 3        | Set Remote Client Access Controls with OKV | 10 minutes   |         |
-| 4        | SSH Key Management with OKV                | 5 minutes    |         |
-| 5        | Reset the OKV config                       | <5 minutes   |         |
-</if>
-<if type="green">
-| Step No. | Feature                                    | Approx. Time | Details |
-| -------- | ------------------------------------------ | ------------ | ------- |
-| 1        | Mandatory Prerequisites                  | 5 minutes    |         |
-| 2        | Set Remote Server Access Controls with OKV | 10 minutes   |         |
-| 3        | Set Remote Client Access Controls with OKV | 10 minutes   |         |
-| 4        | SSH Key Management with OKV                | 5 minutes    |         |
-</if>
+*Estimated Lab Time:* 3 minutes
 
 ## Task 1: Mandatory Prerequisites
 
