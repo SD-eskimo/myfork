@@ -4,26 +4,27 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
 
 *Estimated Lab Time:* 3 minutes
 
-## Task 1: Mandatory Prerequisites
+## Task 1: Get to know your Environment
 
-1. **In the first step of this lab**, you confirm that public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
 
-    - Click on each Remote Desktop link available in the Labs details to open web browser tabs for each of them.
 
-    - **Remote SSH Server** desktop (here `dbsec-lab` with Private IP `10.0.0.150`)
+- Click on each Remote Desktop link available in the Labs details to open web browser tabs for each of them.
 
-        ![Key Vault](./images/okv_ssh-001.png "Remote SSH Server")
+- **Remote SSH Server** desktop (here `dbsec-lab` with Private IP `10.0.0.150`)
 
-        **Note**: This tab will be your main workspace throughout the lab.
+    ![Key Vault](./images/okv_ssh-001.png "Remote SSH Server")
 
-    - **SSH Client workstation** (here `db23ai` with Private IP `10.0.0.155`)
+    **Note**: This tab will be your main workspace throughout the lab.
 
-        ![Key Vault](./images/okv_ssh-002.png "Admin workstation")
+- **SSH Client workstation** (here `db23ai` with Private IP `10.0.0.155`)
+
+    ![Key Vault](./images/okv_ssh-002.png "Admin workstation")
          
-    - On the **SSH Client workstation** (on DB23ai VM):
+- On the **SSH Client workstation** (on db26ai):
 
       **Note**: If you are using a remote desktop session, click on *Activities* (top left corner of the desktop), then click on the *Terminal* icon to launch a session.
 
+1. **In the first step of this lab**, you confirm that public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
 
         - Switch to user *opc*
 
