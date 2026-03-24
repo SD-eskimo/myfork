@@ -11,7 +11,7 @@ This workshop introduces the advanced features and functionality of Oracle Key V
 Watch a preview of "*LiveLabs - Oracle Key Vault*" [](youtube:4VR1bbDpUIA)
 
 ### Objectives
-- An administrator connects to a remote server by using an SSH key pair stored in Oracle Key Vault.
+- An administrator connects to a remote server by using an SSH key pair created and stored in Oracle Key Vault.
 
 ### Prerequisites
 This lab assumes you have:
@@ -33,7 +33,7 @@ This lab assumes you have:
 <if type="brown">
 | Step No. | Feature                                    | Approx. Time | Details |
 | -------- | ------------------------------------------ | ------------ | ------- |
-| 1        | (Mandatory) Prerequisites                  | 5 minutes    |         |
+| 1        | Mandatory Prerequisites                  | 5 minutes    |         |
 | 2        | Set Remote Server Access Controls with OKV | 10 minutes   |         |
 | 3        | Set Remote Client Access Controls with OKV | 10 minutes   |         |
 | 4        | SSH Key Management with OKV                | 5 minutes    |         |
@@ -42,13 +42,13 @@ This lab assumes you have:
 <if type="green">
 | Step No. | Feature                                    | Approx. Time | Details |
 | -------- | ------------------------------------------ | ------------ | ------- |
-| 1        | (Mandatory) Prerequisites                  | 5 minutes    |         |
+| 1        | Mandatory Prerequisites                  | 5 minutes    |         |
 | 2        | Set Remote Server Access Controls with OKV | 10 minutes   |         |
 | 3        | Set Remote Client Access Controls with OKV | 10 minutes   |         |
 | 4        | SSH Key Management with OKV                | 5 minutes    |         |
 </if>
 
-## Task 1: (Mandatory) Prerequisites
+## Task 1: Mandatory Prerequisites
 
 1. **In the first step of this lab**, you confirm that public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
 
