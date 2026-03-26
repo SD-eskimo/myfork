@@ -1,4 +1,4 @@
-# Oracle Key Vault (OKV) - SSH Key Management
+# Oracle Key Vault (OKV) - Centralized SSH Key Management
 
 In **Lab 3** you will confirm that unmanaged SSH public key authentication allows you to login to a remote server (dbseclab) from your workstation (db26ai) without knowing the remote server password. 
 
@@ -34,7 +34,7 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
     </copy>
     ```
 
-- Make sure you have access to SSH Server (DBSeclab VM) *as opc*
+- Make sure you have access to the remote server (DBSeclab VM) *as opc*
 
     ```
     <copy>
