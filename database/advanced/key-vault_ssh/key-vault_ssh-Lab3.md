@@ -20,11 +20,12 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
 
     ![Key Vault](./images/okv_ssh-002.png "Admin workstation")
          
-- On the **SSH Client workstation** (on db26ai):
-
       **Note**: If you are using a remote desktop session, click on *Activities* (top left corner of the desktop), then click on the *Terminal* icon to launch a session.
 
-## Task 2: **In the first step of this lab**, you confirm that public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
+## Task 2: 
+**In the first step of this lab**, you confirm that public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
+
+- On the **SSH Client workstation** (on db26ai):
 
 - Switch to user *opc*
 
@@ -38,7 +39,7 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
 
     ```
     <copy>
-    ssh -i ~/.ssh/id_rsa opc@10.0.0.150
+    ssh opc@10.0.0.150
     </copy>
     ```
 
