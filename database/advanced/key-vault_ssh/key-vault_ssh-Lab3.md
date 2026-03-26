@@ -16,7 +16,7 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
 
     **Note**: This tab will be your main workspace throughout the lab.
 
-- **SSH Client workstation** (here `db23ai` with Private IP `10.0.0.155`)
+- **SSH Client workstation** (here `db26ai` with Private IP `10.0.0.155`)
 
     ![Key Vault](./images/okv_ssh-002.png "Admin workstation")
          
@@ -24,27 +24,27 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
 
       **Note**: If you are using a remote desktop session, click on *Activities* (top left corner of the desktop), then click on the *Terminal* icon to launch a session.
 
-1. **In the first step of this lab**, you confirm that public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
+## Task 2: **In the first step of this lab**, you confirm that public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
 
-    - Switch to user *opc*
+- Switch to user *opc*
 
-        ```
-        <copy>
-        sudo su - opc
-        </copy>
-        ```
+    ```
+    <copy>
+    sudo su - opc
+    </copy>
+    ```
 
-    - Make sure you have access to SSH Server (DBSeclab VM) *as opc*
+- Make sure you have access to SSH Server (DBSeclab VM) *as opc*
 
-        ```
-        <copy>
-        ssh -i ~/.ssh/id_rsa opc@10.0.0.150
-        </copy>
-        ```
+    ```
+    <copy>
+    ssh -i ~/.ssh/id_rsa opc@10.0.0.150
+    </copy>
+    ```
 
-        ![Key Vault](./images/okv_ssh-004.png "SSH Client VM access to SSH Server VM")
+    ![Key Vault](./images/okv_ssh-004.png "SSH Client VM access to SSH Server VM")
 
-        **Note**: You must be successfully connected to dbsec-lab VM!
+    **Note**: You must be successfully connected to dbsec-lab VM!
 
     - If so, close the SSH session:
 
@@ -54,7 +54,7 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
         </copy>
         ```
 
-    - You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db23ai to remote server dbsec-lab.
+    - You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db26ai to remote server dbsec-lab.
 
 ## Want to Learn More?
 Technical Documentation:
