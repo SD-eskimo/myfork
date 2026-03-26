@@ -55,16 +55,3 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
     ```
 
 - You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db26ai to remote server dbsec-lab.
-
-## Want to Learn More?
-Technical Documentation:
-- [Oracle Key Vault](https://docs.oracle.com/en/database/oracle/key-vault/21.13/index.html)
-- [Oracle Key Vault - Multimaster](https://docs.oracle.com/en/database/oracle/key-vault/21.13/okvag/multimaster_concepts.html)
-- [Oracle Key Vault - SSH Key Management](https://docs.oracle.com/en/database/oracle/key-vault/21.13/okvag/management_of_ssh_keys_concepts.html)
-
-> To learn more about how to use OKV for TDE key management, please refer to the "[DB Security - Key Vault] (https://livelabs.oracle.com/pls/apex/dbpm/r/livelabs/view-workshop?wid=727)" workshop
-
-## Acknowledgements
-- **Author** - Peter Wahl, Product Manager Encryption, Key and Secrets Management
-- **Contributors** - Rahil Mir
-- **Last Updated By/Date** - Peter Wahl / April 2026
