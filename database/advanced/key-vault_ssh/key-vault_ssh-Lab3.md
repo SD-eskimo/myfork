@@ -6,8 +6,6 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
 
 ## Task 1: Get to know your Environment
 
-
-
 - Click on each Remote Desktop link available in the Labs details to open web browser tabs for each of them.
 
 - **Remote SSH Server** desktop (here `dbsec-lab` with Private IP `10.0.0.150`)
@@ -22,8 +20,9 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
          
       **Note**: If you are using a remote desktop session, click on *Activities* (top left corner of the desktop), then click on the *Terminal* icon to launch a session.
 
-## Task 2: 
-**In the first step of this lab**, you confirm that public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
+## Task 2: Confirm public key authentication is working
+
+**In this lab**, you confirm that unmanaged, file-based public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
 
 - On the **SSH Client workstation** (on db26ai):
 
