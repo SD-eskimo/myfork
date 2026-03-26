@@ -42,19 +42,19 @@ In **Lab 3** you will confirm that unmanaged SSH public key authentication allow
     </copy>
     ```
 
-    ![Key Vault](./images/okv_ssh-004.png "SSH Client VM access to SSH Server VM")
+![Key Vault](./images/okv_ssh-004.png "SSH Client VM access to SSH Server VM")
 
-    **Note**: You must be successfully connected to dbsec-lab VM!
+**Note**: You must be successfully connected to dbsec-lab VM!
 
-    - If so, close the SSH session:
+- If so, close the SSH session:
 
-        ```
-        <copy>
-        exit
-        </copy>
-        ```
+    ```
+    <copy>
+    exit
+    </copy>
+    ```
 
-    - You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db26ai to remote server dbsec-lab.
+- You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db26ai to remote server dbsec-lab.
 
 ## Want to Learn More?
 Technical Documentation:
