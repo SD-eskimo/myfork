@@ -1,20 +1,22 @@
 # Oracle Key Vault (OKV) - Centralized SSH Key Management
 
-Task 1. **Reset the randomly generated password** (when you login to Oracle Key Vault console for the first time, you will be asked to change your password)
+## Task 1. **Reset the randomly generated password**
 
-- On the SSH Server remote desktop (DBSeclab VM), run the command below to see the random OKV Console password that has been generated during LiveLabs provisioning for all OKV users. The password is saved in the `wui_passphrase` file:
+When you login to Oracle Key Vault console for the first time, you will be asked to change the password to your own.
+
+- On the SSH Server remote desktop (DBSeclab VM), use the command below to see the random OKV password that has been generated during LiveLabs provisioning time for all OKV users. The password has been saved in the `wui_passphrase` file:
     ```
     <copy>
     cat /home/oracle/DBSecLab/livelabs/okv/wui_passphrase
     </copy>
     ```
-- Double-click on the random password to copy it into the clipboard
+- Double-click on the random password to copy it into the clipboard.
     
-- Open a web browser window to *`https://kv`* to access the Key Vault Web Console
+- Open a web browser window to `https://kv` to access the Key Vault Web Console
 
-    **Note**: If you are not using the remote desktop you can also access this page by going to *`https://<OKV-VM_@IP-Public>`*
+    **Note**: If you are not using the remote desktop you can also access this page by going to `https://<OKV-VM_@IP-Public>`
 
-- Login to Key Vault Web Console as `KVEPADMIN` (use the randomly generated password)
+- Login to Key Vault Web Console as `KVEPADMIN` (right-click into the password field to paste the password from the clipboard)
 
     ```
     <copy>
@@ -26,7 +28,7 @@ Task 1. **Reset the randomly generated password** (when you login to Oracle Key 
 
 - Set your new password
     
-    ![Key Vault](./images/okv_ssh-201.png "OKV - Login")
+    ![Key Vault](./images/okv_ssh-201.png "Change random one-time password to permanent password:")
 
 - Click [**Save**]
 
