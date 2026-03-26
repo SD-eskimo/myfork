@@ -18,12 +18,6 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
 - Login to Key Vault Web Console as `KVEPADMIN` (right-click into the password field to paste the password from the clipboard)
 
-    ```
-    <copy>
-    KVEPADMIN
-    </copy>
-    ```
-
     ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
 
 - Set your new password
