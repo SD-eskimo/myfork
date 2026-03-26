@@ -1,82 +1,34 @@
-# Oracle Key Vault (OKV) - SSH Key Management
+# Oracle Key Vault (OKV) - Centralized SSH Key Management
 
-## Introduction
-This workshop introduces the advanced features and functionality of Oracle Key Vault (OKV). It gives the user an opportunity to learn how to configure this appliance to manage SSH keys.
+Task 1. **Reset the randomly generated password** (when you login to Oracle Key Vault console for the first time, you will be asked to change your password)
 
-*Estimated Lab Time:* 35 minutes
-
-*Version tested in this lab:* Oracle OKV 21.13 and Oracle Linux 8.
-
-### Video Preview
-Watch a preview of "*LiveLabs - Oracle Key Vault*" [](youtube:4VR1bbDpUIA)
-
-### Objectives
-- An administrator connects to a remote server by using an SSH key pair stored in Oracle Key Vault.
-
-### Prerequisites
-This lab assumes you have:
-<if type="brown">
-- A Free Tier, Paid or LiveLabs Oracle Cloud account
-- You have completed:
-    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
-    - Lab: Environment Setup
-    - Lab: Initialize Environment
-</if>
-<if type="green">
-- An Oracle Cloud account
-- You have completed:
-    - Introduction Tasks
-</if>
-
-### Lab Timing (estimated)
-
-<if type="brown">
-| Step No. | Feature                                    | Approx. Time | Details |
-| -------- | ------------------------------------------ | ------------ | ------- |
-| 1        | (Mandatory) Prerequisites                  | 5 minutes    |         |
-| 2        | Set Remote Server Access Controls with OKV | 10 minutes   |         |
-| 3        | Set Remote Client Access Controls with OKV | 10 minutes   |         |
-| 4        | SSH Key Management with OKV                | 5 minutes    |         |
-| 5        | Reset the OKV config                       | <5 minutes   |         |
-</if>
-<if type="green">
-| Step No. | Feature                                    | Approx. Time | Details |
-| -------- | ------------------------------------------ | ------------ | ------- |
-| 1        | (Mandatory) Prerequisites                  | 5 minutes    |         |
-| 2        | Set Remote Server Access Controls with OKV | 10 minutes   |         |
-| 3        | Set Remote Client Access Controls with OKV | 10 minutes   |         |
-| 4        | SSH Key Management with OKV                | 5 minutes    |         |
-</if>
-
-2. **Reset the randomly generated password** (when you login to Oracle Key Vault console for the first time, you will be asked to change your password)
-
-    - On the SSH Server remote desktop (DBSeclab VM), run the command below to see the random OKV Console password that has been generated during LiveLabs provisioning for all OKV users. The password is saved in the `wui_passphrase` file:
-        ```
-        <copy>
-        cat /home/oracle/DBSecLab/livelabs/okv/wui_passphrase
-        </copy>
-        ```
-    - Copy the default password
+- On the SSH Server remote desktop (DBSeclab VM), run the command below to see the random OKV Console password that has been generated during LiveLabs provisioning for all OKV users. The password is saved in the `wui_passphrase` file:
+    ```
+    <copy>
+    cat /home/oracle/DBSecLab/livelabs/okv/wui_passphrase
+    </copy>
+    ```
+- Double-click on the random password to copy it into the clipboard
     
-    - Open a web browser window to *`https://kv`* to access the Key Vault Web Console
+- Open a web browser window to *`https://kv`* to access the Key Vault Web Console
 
-        **Note**: If you are not using the remote desktop you can also access this page by going to *`https://<OKV-VM_@IP-Public>`*
+    **Note**: If you are not using the remote desktop you can also access this page by going to *`https://<OKV-VM_@IP-Public>`*
 
-    - Login to Key Vault Web Console as `KVEPADMIN` (use the randomly generated password)
+- Login to Key Vault Web Console as `KVEPADMIN` (use the randomly generated password)
 
-        ```
-        <copy>
-        KVEPADMIN
-        </copy>
-        ```
+    ```
+    <copy>
+    KVEPADMIN
+    </copy>
+    ```
 
-        ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
+    ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
 
-    - Set your new password
+- Set your new password
     
-        ![Key Vault](./images/okv_ssh-201.png "OKV - Login")
+    ![Key Vault](./images/okv_ssh-201.png "OKV - Login")
 
-    - Click [**Save**]
+- Click [**Save**]
 
 1. Create an SSH Server endpoint **dbseclab**
 
