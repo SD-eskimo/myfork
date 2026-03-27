@@ -21,8 +21,8 @@
       "type": "key-vault_ssh"
     },
     {
-      "title": "Part 1: Enforce centralized remote server access control",
-      "description": "Lab 4 to 10: Enforce centralized remote server access control",
+      "title": "Lab 2: Enforce centralized remote server access control",
+      "description": "Task 1 to 7: Enforce centralized remote server access control",
       "publisheddate": "04/30/2026",
       "filename": "../../key-vault_ssh/key-vault_ssh.md",
       "type": "brown"
