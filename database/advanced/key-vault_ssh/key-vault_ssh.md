@@ -126,7 +126,7 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
 - Click [**Save**]
 
-## Task 4: Create an SSH Server endpoint **dbseclab**
+## Task 4: **Create an SSH Server endpoint "dbseclab"**
 
 - Click on **Endpoints** tab
 
@@ -148,7 +148,7 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
 - Click [**Register**]
 
-## Task 5: Create an SSH Server wallet **opc_at_dbseclab**
+## Task 5: **Create an SSH Server wallet "opc_at_dbseclab"**
 
 - Click on **Key & Wallets** tab
 
