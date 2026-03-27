@@ -100,9 +100,9 @@ Confirm that unmanaged, file-based public key authentication from an admin works
 
 - You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db23ai to remote server dbsec-lab.
 
-## Task 3. **Reset the randomly generated password**
+# As the OKV SSH Administrator:
 
-**As the OKV SSH Administrator:**
+## Task 3. **Reset the randomly generated password**
 
 When you login to Oracle Key Vault console for the first time, you will be asked to change the password to your own.
 
@@ -195,9 +195,9 @@ When you login to Oracle Key Vault console for the first time, you will be asked
     
     ![Key Vault](./images/okv_ssh-020.png "Copy Enrollment Token")
 
-## Task 7: Download the OKV Client binaries
+# As the owner of the remote server:
 
-**As the owner of the remote server:**
+## Task 7: Download the OKV Client binaries
 
 - Navigate to the OKV home page, do not login; click on **Endpoint Enrollment and Software Download** link
     
@@ -217,7 +217,7 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
 ## Task 8: Install the OKV endpoint (client) software
 
-4. Go back to **your terminal session on the remote server** (dbseclab): Only the remote server owner has sudo privileges and can install the SSH Server endpoint:
+Go back to **your terminal session on the remote server** (dbseclab): Only the remote server owner has sudo privileges and can install the SSH Server endpoint:
 
 - Install the OKV client endpoint software with root privileges (press *enter* for AUTO-LOGIN)
 
@@ -293,78 +293,74 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
     ![Key Vault](./images/okv_ssh-032.png "Confirm the changed settings have been activated by the SSH daemon:")
 
-5. Now, the **owner** of the remote server uploads the administrator’s public key to the **SSH Server wallet** in OKV.
+Uploads the administrator’s public key to the **SSH Server wallet** in OKV.
 
-    - **Extract the administrator's public key** from the `authorized_keys` file; it is displayed in the specific RSA format:
+- **Extract the administrator's public key** from the `authorized_keys` file; it is displayed in the specific RSA format:
 
-        ```
-        <copy>
-        sudo grep "opc@db23ai" /home/opc/.ssh/authorized_keys | sudo tee /home/opc/.ssh/id_rsa_ADMIN.pub
-        </copy>
-        ```
+    ```
+    <copy>
+    sudo grep "opc@db23ai" /home/opc/.ssh/authorized_keys | sudo tee /home/opc/.ssh/id_rsa_ADMIN.pub
+    </copy>
+    ```
         
-        ![Key Vault](./images/okv_ssh-033.png "Extract the administrator's public key from the authorized_keys file:")
+    ![Key Vault](./images/okv_ssh-033.png "Extract the administrator's public key from the authorized_keys file:")
 
-    - **Convert the administrator's public key** from the specific RSA format to the more universal PKCS#8 format:
+- **Convert the administrator's public key** from the specific RSA format to the more universal PKCS#8 format:
 
-        ```
-        <copy>
-        sudo ssh-keygen -e -m PKCS8 -f /home/opc/.ssh/id_rsa_ADMIN.pub | sudo tee /home/opc/.ssh/id_pkcs8_ADMIN.pub
-        </copy>
-        ```
+    ```
+    <copy>
+    sudo ssh-keygen -e -m PKCS8 -f /home/opc/.ssh/id_rsa_ADMIN.pub | sudo tee /home/opc/.ssh/id_pkcs8_ADMIN.pub
+    </copy>
+    ```
 
-        ![Key Vault](./images/okv_ssh-034.png "Convert public key to PKCS8 format")
+    ![Key Vault](./images/okv_ssh-034.png "Convert public key to PKCS8 format")
 
-    - **Upload the administrator's public key** (in PKCS#8 format) to OKV
+- **Upload the administrator's public key** (in PKCS#8 format) to OKV
 
-        ```
-        <copy>
-        sudo /opt/okv/bin/okvutil upload -l /home/opc/.ssh/id_pkcs8_ADMIN.pub -U opc -t SSH_PUBLIC_KEY -g opc_at_dbseclab -L 2048
-        </copy>
-        ```
+    ```
+    <copy>
+    sudo /opt/okv/bin/okvutil upload -l /home/opc/.ssh/id_pkcs8_ADMIN.pub -U opc -t SSH_PUBLIC_KEY -g opc_at_dbseclab -L 2048
+    </copy>
+    ```
 
-        ![Key Vault](./images/okv_ssh-035.png "Upload public key to OKV")
+    ![Key Vault](./images/okv_ssh-035.png "Upload public key to OKV")
 
-    - **Confirm Set SELinux is set to `Permissive`**
+- **Confirm Set SELinux is set to `Permissive`**
 
-        ```
-        <copy>
-        getenforce
-        sudo setenforce 0
-        getenforce
-        </copy>
-        ```
+    ```
+    <copy>
+    getenforce
+    sudo setenforce 0
+    getenforce
+    </copy>
+    ```
 
-        ![Key Vault](./images/okv_ssh-036.png "Confirm SELinux is set to Permissive")
+    ![Key Vault](./images/okv_ssh-036.png "Confirm SELinux is set to Permissive")
 
-6. Go back on the **OKV Web Console** to reduce access of the SSH Server endpoint to the SSH Server Wallet to **Read Only**:
+# As the OKV SSH Administrator:
 
-    - Log on to **OKV Web Console** as KVEPADMIN
+Go back on the **OKV Web Console** to reduce access of the SSH Server endpoint to the SSH Server Wallet to **Read Only**:
 
-        ```
-        <copy>
-        KVEPADMIN
-        </copy>
-        ```
+- Log on to **OKV Web Console** as KVEPADMIN
 
-        ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
+    ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
 
-    - Click the **Key and Wallets** tab
+- Click the **Key and Wallets** tab
 
-    - Click on the SSH Server wallet `opc_at_dbseclab` to confirm that the administrator's public key is this wallet.
-    - Under **Access Settings**, click on the **"Edit"** pencil:
+- Click on the SSH Server wallet `opc_at_dbseclab` to confirm that the administrator's public key is this wallet.
+- Under **Access Settings**, click on the **"Edit"** pencil:
 
-        ![Key Vault](./images/okv_ssh-038.png "Edit Access settings")
+    ![Key Vault](./images/okv_ssh-038.png "Edit Access settings")
 
-    - Under **Wallet Access Settings**, click on the **"Edit"** pencil:
+- Under **Wallet Access Settings**, click on the **"Edit"** pencil:
 
-        ![Key Vault](./images/okv_ssh-039.png "Edit Wallet Access settings")
+    ![Key Vault](./images/okv_ssh-039.png "Edit Wallet Access settings")
 
-    - Deselect the **Manage Wallet** checkbox button, and click [**Save**]
+- Deselect the **Manage Wallet** checkbox button, and click [**Save**]
 
-        ![Key Vault](./images/okv_ssh-040.png "Deselect the Manage Wallet privilege")
+    ![Key Vault](./images/okv_ssh-040.png "Deselect the Manage Wallet privilege")
 
-    - From now on, the dbseclab SSH Server endpoint has only **Read Only** privileges on the SSH Server wallet `opc_at_dbseclab`
+- From now on, the dbseclab SSH Server endpoint has only **Read Only** privileges on the SSH Server wallet `opc_at_dbseclab`
 
 7. Go back to **your terminal session on SSH Server** (DBSeclab VM) where the owner of the remote server switches to the `opc` user and removes the administrator's public keys and the `authorized_keys` file:
 
