@@ -148,7 +148,7 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
 - Click [**Register**]
 
-## Task 5: Create an SSH Server wallet **`opc_at_dbseclab`**
+## Task 5: Create an SSH Server wallet **opc_at_dbseclab**
 
 - Click on **Key & Wallets** tab
 
@@ -171,21 +171,21 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
 ## Task 6: Define access privileges from SSH Server endpoint to SSH Server wallet
 
-    - Click on the **"Edit"** pencil icon to the right
+- Click on the **"Edit"** pencil icon to the right
 
-        ![Key Vault](./images/okv_ssh-016.png "Key & Wallets - Edit")
+    ![Key Vault](./images/okv_ssh-016.png "Key & Wallets - Edit")
 
-    - Click [**Add**] next to **Wallet Access Settings**
+- Click [**Add**] next to **Wallet Access Settings**
 
-        ![Key Vault](./images/okv_ssh-017.png "Add Wallet")
+    ![Key Vault](./images/okv_ssh-017.png "Add Wallet")
 
-    - Select `Endpoints` from the drop-down menu
+- Select `Endpoints` from the drop-down menu
 
-    - Tick the `DBSECLAB` endpoint checkbox, and under **Select Access Level**, click the `Read Only` and `Manage Wallet` radio buttons
+- Tick the `DBSECLAB` endpoint checkbox, and under **Select Access Level**, click the `Read Only` and `Manage Wallet` radio buttons
 
-        ![Key Vault](./images/okv_ssh-019.png "Access to Wallet - Form")
+    ![Key Vault](./images/okv_ssh-019.png "Access to Wallet - Form")
 
-    - Click [**Save**]
+- Click [**Save**]
 
 3. Download the OKV Client binaries
 
