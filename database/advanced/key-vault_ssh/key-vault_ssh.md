@@ -148,7 +148,7 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
 - Click [**Register**]
 
-## Task 5: **Create an SSH Server wallet "opc_at_dbseclab"**
+## Task 5: **Create an SSH Server wallet "opc\_at\_dbseclab"**
 
 - Click on **Key & Wallets** tab
 
