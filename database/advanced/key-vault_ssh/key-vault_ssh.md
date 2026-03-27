@@ -187,33 +187,33 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
 - Click [**Save**]
 
-3. Download the OKV Client binaries
+## Task 7: Download the OKV Client binaries
 
-    - Click **Endpoints** tab
+- Click **Endpoints** tab
 
-    - Copy the Enrollment Token of the **dbseclab** endpoint.
+- Copy the Enrollment Token of the **dbseclab** endpoint.
     
-        ![Key Vault](./images/okv_ssh-020.png "Copy Enrollment Token")
+    ![Key Vault](./images/okv_ssh-020.png "Copy Enrollment Token")
 
-    - Click on the user name **KVEPADMIN** in the top right corner and select *Logout* from the drop-down menu
+- Click on the user name **KVEPADMIN** in the top right corner and select *Logout* from the drop-down menu
 
-        ![Key Vault](./images/okv_ssh-021.png "Logout")
+    ![Key Vault](./images/okv_ssh-021.png "Logout")
 
-    - Back on the Login page, click on **Endpoint Enrollment and Software Download** link
+- Back on the Login page, click on **Endpoint Enrollment and Software Download** link
     
-        ![Key Vault](./images/okv_ssh-022.png "Software Download")
+    ![Key Vault](./images/okv_ssh-022.png "Software Download")
 
-    - On this page, **paste the enrollment token** into the text field
+- On this page, **paste the enrollment token** into the text field
     
-        ![Key Vault](./images/okv_ssh-023.png "Paste Enrollment Token")
+    ![Key Vault](./images/okv_ssh-023.png "Paste Enrollment Token")
 
-    - Click [**Submit Token**], then click [**Enroll**]
+- Click [**Submit Token**], then click [**Enroll**]
     
-        ![Key Vault](./images/okv_ssh-024.png "Logout")
+    ![Key Vault](./images/okv_ssh-024.png "Logout")
 
-        **Note**: If the token is valid, the other fields populate with the details previously entered during endpoint creation.
+    **Note**: If the token is valid, the other fields populate with the details previously entered during endpoint creation.
         
-        The software is automatically downloaded into the "Downloads" folder.
+    The software is automatically downloaded into the "Downloads" folder.
 
 4. Go back to **your terminal session on the remote server** (dbseclab): Only the remote server owner has sudo privileges and can install the SSH Server endpoint:
 
