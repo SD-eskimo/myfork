@@ -213,42 +213,44 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
     **Note**: If the token is valid, the other fields populate with the details previously entered during endpoint creation.
         
-    The software is automatically downloaded into the "Downloads" folder.
+    The software is downloaded into the "Downloads" folder.
+
+## Task 8: Install the OKV endpoint (client) software
 
 4. Go back to **your terminal session on the remote server** (dbseclab): Only the remote server owner has sudo privileges and can install the SSH Server endpoint:
 
-    - Install the OKV client endpoint software with root privileges (press *enter* for AUTO-LOGIN)
+- Install the OKV client endpoint software with root privileges (press *enter* for AUTO-LOGIN)
 
-        ```
-        <copy>
-        sudo mkdir -pvm700 /opt/okv
-        export JAVA_HOME=/opt/oracle/product/23ai/dbhomeFree/jdk
-        sudo $JAVA_HOME/bin/java -jar /home/oracle/Downloads/okvclient.jar -d /opt/okv        
-        </copy>
-        ```
+    ```
+    <copy>
+    sudo mkdir -pvm700 /opt/okv
+    export JAVA_HOME=/opt/oracle/product/23ai/dbhomeFree/jdk
+    sudo $JAVA_HOME/bin/java -jar /home/oracle/Downloads/okvclient.jar -d /opt/okv        
+    </copy>
+    ```
 
-        ![Key Vault](./images/okv_ssh-028.png "Install the OKV SSH Server endpoint software into /opt/okv/ as root as an auto-open endpoint.")
+    ![Key Vault](./images/okv_ssh-028.png "Install the OKV SSH Server endpoint software into /opt/okv/ as root as an auto-open endpoint.")
 
-        **Note**:
-        - The `/opt/okv/` directory stores the OKV client software.
-        - The installation process **deletes the JAR file** after a successful installation.
+    **Note**:
+    - The `/opt/okv/` directory stores the OKV client software.
+    - The installation process **deletes the JAR file** after a successful installation.
 
-    - Modify the SSH Server endpoint configuration file `okvsshendpoint.conf` to associate an incoming `opc` user with the SSH Server wallet  `opc_at_dbseclab`.
+- Modify the SSH Server endpoint configuration file `okvsshendpoint.conf` to associate an incoming `opc` user with the SSH Server wallet  `opc_at_dbseclab`.
     
-        ```
-        <copy>
-        cat << 'EOF' > /tmp/set_endpoint_conf.sh
-        #!/bin/bash
-        echo ==== Original Values in /opt/okv/conf/okvsshendpoint.conf file ====
-        sudo grep -A 1 'user1' /opt/okv/conf/okvsshendpoint.conf
-        echo
-        echo ==== New Values ====
-        sudo sed -i '/user1/{N; s|.*\n.*|\[opc\]\nssh_server_wallet = opc_at_dbseclab|; }' /opt/okv/conf/okvsshendpoint.conf && sudo grep -A 1 'opc' /opt/okv/conf/okvsshendpoint.conf
-        EOF
+    ```
+    <copy>
+    cat << 'EOF' > /tmp/set_endpoint_conf.sh
+    #!/bin/bash
+    echo ==== Original Values in /opt/okv/conf/okvsshendpoint.conf file ====
+    sudo grep -A 1 'user1' /opt/okv/conf/okvsshendpoint.conf
+    echo
+    echo ==== New Values ====
+    sudo sed -i '/user1/{N; s|.*\n.*|\[opc\]\nssh_server_wallet = opc_at_dbseclab|; }' /opt/okv/conf/okvsshendpoint.conf && sudo grep -A 1 'opc' /opt/okv/conf/okvsshendpoint.conf
+    EOF
 
-        sudo chmod u+x /tmp/set_endpoint_conf.sh
-        sh /tmp/set_endpoint_conf.sh
-        </copy>
+    sudo chmod u+x /tmp/set_endpoint_conf.sh
+    sh /tmp/set_endpoint_conf.sh
+    </copy>
         ```
 
         ![Key Vault](./images/okv_ssh-029.png "Modify okvsshendpoint.conf")
