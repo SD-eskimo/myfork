@@ -66,7 +66,7 @@ This lab assumes you have:
 
 ## Task 2: Confirm public key authentication is working
 
-**In this lab**, you confirm that unmanaged, file-based public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
+Confirm that unmanaged, file-based public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
 
 - On the **SSH Client workstation** (on db26ai):
 
@@ -100,81 +100,76 @@ This lab assumes you have:
 
 - You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db23ai to remote server dbsec-lab.
 
-2. **Reset the randomly generated password** (when you login to Oracle Key Vault console for the first time, you will be asked to change your password)
+## Task 3. **Reset the randomly generated password**
 
-    - On the SSH Server remote desktop (DBSeclab VM), run the command below to see the random OKV Console password that has been generated during LiveLabs provisioning for all OKV users. The password is saved in the `wui_passphrase` file:
-        ```
-        <copy>
-        cat /home/oracle/DBSecLab/livelabs/okv/wui_passphrase
-        </copy>
-        ```
-    - Copy the default password
+When you login to Oracle Key Vault console for the first time, you will be asked to change the password to your own.
+
+- On the SSH Server remote desktop (DBSeclab VM), use the command below to see the random OKV password that has been generated during LiveLabs provisioning time for all OKV users. The password has been saved in the `wui_passphrase` file:
+    ```
+    <copy>
+    cat /home/oracle/DBSecLab/livelabs/okv/wui_passphrase
+    </copy>
+    ```
+- Double-click on the random password to copy it into the clipboard.
     
-    - Open a web browser window to *`https://kv`* to access the Key Vault Web Console
+- Open a web browser window to `https://kv` to access the Key Vault Web Console
 
-        **Note**: If you are not using the remote desktop you can also access this page by going to *`https://<OKV-VM_@IP-Public>`*
+    **Note**: If you are not using the remote desktop you can also access this page by going to `https://<OKV-VM_@IP-Public>`
 
-    - Login to Key Vault Web Console as `KVEPADMIN` (use the randomly generated password)
+- Login to Key Vault Web Console as `KVEPADMIN` (right-click into the password field to paste the password from the clipboard)
 
-        ```
-        <copy>
-        KVEPADMIN
-        </copy>
-        ```
+    ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
 
-        ![Key Vault](./images/okv_ssh-200.png "OKV - Login")
-
-    - Set your new password
+- Set your new password
     
-        ![Key Vault](./images/okv_ssh-201.png "OKV - Login")
+    ![Key Vault](./images/okv_ssh-201.png "Change random one-time password to permanent password:")
 
-    - Click [**Save**]
+- Click [**Save**]
 
-## Task 2: Set Remote Server Access Controls with OKV
-In this lab, we will introduce remote server access controls by centrally managing user's public key in OKV.
+## Task 4: Create an SSH Server endpoint **dbseclab**
 
-1. Create an SSH Server endpoint **dbseclab**
+- Click on **Endpoints** tab
 
-    - Click on **Endpoints** tab
+    ![Key Vault](./images/okv_ssh-010.png "OKV Console Endpoint")
 
-        ![Key Vault](./images/okv_ssh-010.png "OKV Console Endpoint")
+- Click [**Add**]
 
-    - Click [**Add**]
+    ![Key Vault](./images/okv_ssh-011.png "Add Endpoint")
 
-        ![Key Vault](./images/okv_ssh-011.png "Add Endpoint")
-
-    - Fill it out as following:
+- Fill it out as following:
     
-        - Endpoint Name (remote server hostname): `dbseclab`
-        - Type: `SSH Server`
-        - SSH Server Hostname: `10.0.0.150`
-        - Platform: `Linux`
-        - Discription: `SSH Server Endpoint on remote server that provides access to one or more SSH Server wallets; one SSH Server wallet for each user on the remote server.`
+    - Endpoint Name (remote server hostname): `dbseclab`
+    - Type: `SSH Server`
+    - SSH Server Hostname: `10.0.0.150`
+    - Platform: `Linux`
+    - Discription: `SSH Server Endpoint on remote server that provides access to one or more SSH Server wallets; one SSH Server wallet for each user on the remote server.`
 
-        ![Key Vault](./images/okv_ssh-012.png "Add Endpoint - Form")
+    ![Key Vault](./images/okv_ssh-012.png "Add Endpoint - Form")
 
-    - Click [**Register**]
+- Click [**Register**]
 
-2. Create an SSH Server wallet **`opc_at_dbseclab`**
+## Task 5: Create an SSH Server wallet **`opc_at_dbseclab`**
 
-    - Click on **Key & Wallets** tab
+- Click on **Key & Wallets** tab
 
-        ![Key Vault](./images/okv_ssh-013.png "Key & Wallets tab")
+    ![Key Vault](./images/okv_ssh-013.png "Key & Wallets tab")
 
-    - Click [**Create**]
+- Click [**Create**]
 
-        ![Key Vault](./images/okv_ssh-014.png "Create Wallet")
+    ![Key Vault](./images/okv_ssh-014.png "Create Wallet")
 
-    - Fill it out as following
+- Fill it out as following
     
-        - Name: `opc_at_dbseclab`
-        - Description: `SSH Server wallet holding public keys of all SSH users who log in to remote server "dbseclab" as "opc".`
-        - Wallet Type: select `SSH Server`
-        - SSH Server Host user: `opc`
+    - Name: `opc_at_dbseclab`
+    - Description: `SSH Server wallet holding public keys of all SSH users who log in to remote server "dbseclab" as "opc".`
+    - Wallet Type: select `SSH Server`
+    - SSH Server Host user: `opc`
 
-            ![Key Vault](./images/okv_ssh-015.png "Key & Wallets - Form")
+    ![Key Vault](./images/okv_ssh-015.png "Key & Wallets - Form")
 
-    - Click [**Save**]
+- Click [**Save**]
+
+## Task 6: Define access privileges from SSH Server endpoint to SSH Server wallet
 
     - Click on the **"Edit"** pencil icon to the right
 
