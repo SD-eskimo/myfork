@@ -102,6 +102,8 @@ Confirm that unmanaged, file-based public key authentication from an admin works
 
 ## Task 3. **Reset the randomly generated password**
 
+**As the OKV SSH Administrator:**
+
 When you login to Oracle Key Vault console for the first time, you will be asked to change the password to your own.
 
 - On the SSH Server remote desktop (DBSeclab VM), use the command below to see the random OKV password that has been generated during LiveLabs provisioning time for all OKV users. The password has been saved in the `wui_passphrase` file:
@@ -187,19 +189,17 @@ When you login to Oracle Key Vault console for the first time, you will be asked
 
 - Click [**Save**]
 
-## Task 7: Download the OKV Client binaries
-
 - Click **Endpoints** tab
 
 - Copy the Enrollment Token of the **dbseclab** endpoint.
     
     ![Key Vault](./images/okv_ssh-020.png "Copy Enrollment Token")
 
-- Click on the user name **KVEPADMIN** in the top right corner and select *Logout* from the drop-down menu
+## Task 7: Download the OKV Client binaries
 
-    ![Key Vault](./images/okv_ssh-021.png "Logout")
+**As the owner of the remote server:**
 
-- Back on the Login page, click on **Endpoint Enrollment and Software Download** link
+- Navigate to the OKV home page, do not login; click on **Endpoint Enrollment and Software Download** link
     
     ![Key Vault](./images/okv_ssh-022.png "Software Download")
 
@@ -211,7 +211,7 @@ When you login to Oracle Key Vault console for the first time, you will be asked
     
     ![Key Vault](./images/okv_ssh-024.png "Logout")
 
-    **Note**: If the token is valid, the other fields populate with the details previously entered during endpoint creation.
+    **Note**: If the token is valid, the other fields are populated with the details entered during endpoint creation.
         
     The software is downloaded into the "Downloads" folder.
 
