@@ -347,7 +347,7 @@ Go back on the **OKV Web Console** to reduce access of the SSH Server endpoint t
 
 - Click the **Key and Wallets** tab
 
-- Click on the SSH Server wallet `opc_at_dbseclab` to confirm that the administrator's public key is this wallet.
+- Click on the SSH Server wallet `opc_at_dbseclab` to confirm that the administrator's public key is in this wallet.
 - Under **Access Settings**, click on the **"Edit"** pencil:
 
     ![Key Vault](./images/okv_ssh-038.png "Edit Access settings")
@@ -362,20 +362,20 @@ Go back on the **OKV Web Console** to reduce access of the SSH Server endpoint t
 
 - From now on, the dbseclab SSH Server endpoint has only **Read Only** privileges on the SSH Server wallet `opc_at_dbseclab`
 
-7. Go back to **your terminal session on SSH Server** (DBSeclab VM) where the owner of the remote server switches to the `opc` user and removes the administrator's public keys and the `authorized_keys` file:
+Go back to **your terminal session on SSH Server** (DBSeclab VM) where the owner of the remote server switches to the `opc` user and removes the administrator's public keys and the `authorized_keys` file:
 
-    - Move the `authorized_keys` file as well as **all SSH keys** into a hidden backup directory, leaving only the `known_hosts` file intact:
+- Move the `authorized_keys` file as well as **all SSH keys** into a hidden backup directory, leaving only the `known_hosts` file intact:
 
-        ```
-        <copy>
-        sudo su - opc
-        mkdir -pvm700 /home/opc/.ssh/.backup
-        mv /home/opc/.ssh/!(known_hosts) /home/opc/.ssh/.backup
-        tree -n /home/opc/.ssh/
-        </copy>
-        ```
+    ```
+    <copy>
+    sudo su - opc
+    mkdir -pvm700 /home/opc/.ssh/.backup
+    mv /home/opc/.ssh/!(known_hosts) /home/opc/.ssh/.backup
+    tree -n /home/opc/.ssh/
+    </copy>
+    ```
 
-        ![Key Vault](./images/okv_ssh-041.png "Backup SSH keys")
+    ![Key Vault](./images/okv_ssh-041.png "Backup SSH keys")
 
 8. Go back to **your terminal session on the SSH Client** (DB23ai VM) *as opc* and log into the remote server `dbsec-lab` with the same command that was used at the very beginning of this lab:
 
