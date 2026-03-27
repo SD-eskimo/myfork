@@ -251,47 +251,47 @@ When you login to Oracle Key Vault console for the first time, you will be asked
     sudo chmod u+x /tmp/set_endpoint_conf.sh
     sh /tmp/set_endpoint_conf.sh
     </copy>
-        ```
+    ```
 
-        ![Key Vault](./images/okv_ssh-029.png "Modify okvsshendpoint.conf")
+    ![Key Vault](./images/okv_ssh-029.png "Modify okvsshendpoint.conf")
 
-    - Modify `/etc/ssh/sshd_config` to redirect incoming SSH requests to Oracle Key Vault.
+- Modify `/etc/ssh/sshd_config` to redirect incoming SSH requests to Oracle Key Vault.
+   
+    ```
+    <copy>
+    cat << 'EOF' > /tmp/set_okv_sshd.sh
+    #!/bin/bash
+    echo ==== Original Values in /etc/ssh/sshd_config file ====
+    sudo grep -A 1 'AuthorizedKeysCommand' /etc/ssh/sshd_config
+    echo
+    echo ==== New Values ====
+    sudo sed -i -e 's|#AuthorizedKeysCommandUser nobody|AuthorizedKeysCommandUser root|' -e 's|#AuthorizedKeysCommand none|AuthorizedKeysCommand /opt/okv/bin/okv_ssh_ep_lookup_authorized_keys get_authorized_keys_for_user %u %f %k|' /etc/ssh/sshd_config && sudo grep -A 1 'AuthorizedKeysCommand' /etc/ssh/sshd_config
+    EOF
+
+    sudo chmod u+x /tmp/set_okv_sshd.sh
+    sh /tmp/set_okv_sshd.sh
+    </copy>
+    ```
+
+    ![Key Vault](./images/okv_ssh-030.png "Modify sshd_config")
+
+- Restart sshd service to activate the new settings
     
-        ```
-        <copy>
-        cat << 'EOF' > /tmp/set_okv_sshd.sh
-        #!/bin/bash
-        echo ==== Original Values in /etc/ssh/sshd_config file ====
-        sudo grep -A 1 'AuthorizedKeysCommand' /etc/ssh/sshd_config
-        echo
-        echo ==== New Values ====
-        sudo sed -i -e 's|#AuthorizedKeysCommandUser nobody|AuthorizedKeysCommandUser root|' -e 's|#AuthorizedKeysCommand none|AuthorizedKeysCommand /opt/okv/bin/okv_ssh_ep_lookup_authorized_keys get_authorized_keys_for_user %u %f %k|' /etc/ssh/sshd_config && sudo grep -A 1 'AuthorizedKeysCommand' /etc/ssh/sshd_config
-        EOF
+    ```
+    <copy>
+    sudo systemctl restart sshd
+    </copy>
+    ```
 
-        sudo chmod u+x /tmp/set_okv_sshd.sh
-        sh /tmp/set_okv_sshd.sh
-        </copy>
-        ```
+- Confirm the changed settings have been activated by the SSH daemon:
+   
+    ```
+    <copy>
+    sudo sshd -T | grep keyscommand
+    </copy>
+    ```
 
-        ![Key Vault](./images/okv_ssh-030.png "Modify sshd_config")
-
-    - Restart sshd service to activate the new settings
-    
-        ```
-        <copy>
-        sudo systemctl restart sshd
-        </copy>
-        ```
-
-    - Confirm the changed settings have been activated by the SSH daemon:
-    
-        ```
-        <copy>
-        sudo sshd -T | grep keyscommand
-        </copy>
-        ```
-
-        ![Key Vault](./images/okv_ssh-032.png "Confirm the changed settings have been activated by the SSH daemon:")
+    ![Key Vault](./images/okv_ssh-032.png "Confirm the changed settings have been activated by the SSH daemon:")
 
 5. Now, the **owner** of the remote server uploads the administrator’s public key to the **SSH Server wallet** in OKV.
 
