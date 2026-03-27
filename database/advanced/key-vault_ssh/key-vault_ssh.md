@@ -42,34 +42,35 @@ This lab assumes you have:
 <if type="green">
 | Step No. | Feature                                    | Approx. Time | Details |
 | -------- | ------------------------------------------ | ------------ | ------- |
-| 1        | (Mandatory) Prerequisites                  | 5 minutes    |         |
+| 1        | Get to know your Environment               | 5 minutes    |         |
 | 2        | Set Remote Server Access Controls with OKV | 10 minutes   |         |
 | 3        | Set Remote Client Access Controls with OKV | 10 minutes   |         |
 | 4        | SSH Key Management with OKV                | 5 minutes    |         |
 </if>
 
-## Task 1: (Mandatory) Prerequisites
+## Task 1: Get to know your Environment
 
-1. **In the first step of this lab**, you confirm that public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
+- Click on each Remote Desktop link available in the Labs details to open web browser tabs for each of them.
 
-    - Click on each Remote Desktop link available in the Labs details to open web browser tabs for each of them.
+- **Remote SSH Server** desktop (here `dbsec-lab` with Private IP `10.0.0.150`)
 
-        - **Remote SSH Server** desktop (here `dbsec-lab` with Private IP `10.0.0.150`)
+    ![Key Vault](./images/okv_ssh-001.png "Remote SSH Server")
 
-            ![Key Vault](./images/okv_ssh-001.png "Remote SSH Server")
+    **Note**: This tab will be your main workspace throughout the lab.
 
-            **Note**: This tab will be your main workspace throughout the lab.
+- **SSH Client workstation** (here `db26ai` with Private IP `10.0.0.155`)
 
-        - **SSH Client workstation** (here `db23ai` with Private IP `10.0.0.155`)
-
-            ![Key Vault](./images/okv_ssh-002.png "Admin workstation")
+    ![Key Vault](./images/okv_ssh-002.png "Admin workstation")
          
-    - On the **SSH Client workstation** (on DB23ai VM):
-
       **Note**: If you are using a remote desktop session, click on *Activities* (top left corner of the desktop), then click on the *Terminal* icon to launch a session.
 
+## Task 2: Confirm public key authentication is working
 
-        - Switch to user *opc*
+**In this lab**, you confirm that unmanaged, file-based public key authentication from an admin workstation (db26ai) to a remote server (dbsec-lab) is working:
+
+- On the **SSH Client workstation** (on db26ai):
+
+- Switch to user *opc*
 
             ```
             <copy>
