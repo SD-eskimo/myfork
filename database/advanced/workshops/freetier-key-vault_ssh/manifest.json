@@ -28,59 +28,10 @@
       "type": "brown"
     },
     {
-      "title": "Lab 3: Confirm file-based SSH to remote Server",
-      "description": "In this lab you confirm functionality of unmanaged, legacy public key authentication",
+      "title": "Lab 3: Enforce private key governance:",
+      "description": "Task 1 to 7: Enforce centralized remote server access control",
       "publisheddate": "04/30/2026",
-      "filename": "../../key-vault_ssh/key-vault_ssh-Lab3.md",
-      "type": "brown"
-    },
-    {
-      "title": "Lab 4: As OKV SSH Admin: Reset OKV password; create objects in OKV",
-      "description": "In this Lab, you will reset the OKV password, and create an SSH Server Endpoint and an SSH Server wallet",
-      "publisheddate": "04/30/2026",
-      "filename": "../../key-vault_ssh/key-vault_ssh-Lab4.md",
-      "type": "brown"
-    },
-    {
-      "title": "Lab 5: As remote server Owner: Download and install the OKV client",
-      "description": "In this lab, you will download and install the OKV client into the remote server",
-      "publisheddate": "04/30/2026",
-      "filename": "../../key-vault_ssh/key-vault_ssh-Lab5.md",
-      "type": "brown"
-    },
-    {
-      "title": "Lab 6: As remote server Owner: Configure the SSH daemon and OKV client software",
-      "description": "In this lab, you will configure the SSH daemon and OKV client on your remote server",
-      "publisheddate": "04/30/2026",
-      "filename": "../../key-vault_ssh/key-vault_ssh-Lab6.md",
-      "type": "brown"
-    },
-    {
-      "title": "Lab 7: As remote server owner: Extract, convert and upload the admin's public SSH key to OKV",
-      "description": "In this lab, extract, convert and upload admin's public key to OKV",
-      "publisheddate": "04/30/2026",
-      "filename": "../../key-vault_ssh/key-vault_ssh-Lab7.md",
-      "type": "brown"
-    },
-    {
-      "title": "Lab 8: As remote server owner: Disable legacy SSH logins by removing keys and config files from the remote server",
-      "description": "In this lab: Disable legacy SSH logins by removing keys and config files from the remote server",
-      "publisheddate": "04/30/2026",
-      "filename": "../../key-vault_ssh/key-vault_ssh-Lab8.md",
-      "type": "brown"
-    },
-    {
-      "title": "Lab 9: As OKV SSH Admin: Reduce access to public keys to READ-ONLY",
-      "description": "In this lab: Reduce access to public keys to READ-ONLY",
-      "publisheddate": "04/30/2026",
-      "filename": "../../key-vault_ssh/key-vault_ssh-Lab9.md",
-      "type": "brown"
-    },
-    {
-      "title": "Lab 10: As admin: Confirm unchanged functionality without client downtime",
-      "description": "In this lab: Confirm unchanged functionality without client downtime",
-      "publisheddate": "04/30/2026",
-      "filename": "../../key-vault_ssh/key-vault_ssh-Lab10.md",
+      "filename": "../../key-vault_ssh/key-vault_ssh-2.md",
       "type": "brown"
     },
     {
