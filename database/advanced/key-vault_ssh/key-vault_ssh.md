@@ -72,33 +72,33 @@ This lab assumes you have:
 
 - Switch to user *opc*
 
-            ```
-            <copy>
-            sudo su - opc
-            </copy>
-            ```
+    ```
+    <copy>
+    sudo su - opc
+    </copy>
+    ```
 
-        - Make sure you have access to SSH Server (DBSeclab VM) *as opc*
+- Make sure you have access to SSH Server (DBSeclab VM) *as opc*
 
-            ```
-            <copy>
-            ssh -i ~/.ssh/id_rsa opc@10.0.0.150
-            </copy>
-            ```
+    ```
+    <copy>
+    ssh opc@10.0.0.150
+    </copy>
+    ```
 
-            ![Key Vault](./images/okv_ssh-004.png "SSH Client VM access to SSH Server VM")
+    ![Key Vault](./images/okv_ssh-004.png "SSH Client VM access to SSH Server VM")
 
-            **Note**: You must be successfully connected to dbsec-lab VM!
+**Note**: You must be successfully connected to dbsec-lab VM!
 
-        - If so, close the SSH session:
+- If so, close the SSH session:
 
-            ```
-            <copy>
-            exit
-            </copy>
-            ```
+    ```
+    <copy>
+    exit
+    </copy>
+    ```
 
-    - You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db23ai to remote server dbsec-lab.
+- You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db23ai to remote server dbsec-lab.
 
 2. **Reset the randomly generated password** (when you login to Oracle Key Vault console for the first time, you will be asked to change your password)
 
