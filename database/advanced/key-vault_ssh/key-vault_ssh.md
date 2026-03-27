@@ -100,9 +100,9 @@ Confirm that unmanaged, file-based public key authentication from an admin works
 
 - You confirmed that SSH public key authentication is configured, allowing passwordless access from workstation db23ai to remote server dbsec-lab.
 
-# As the OKV SSH Administrator:
-
 ## Task 3. **Reset the randomly generated password**
+
+# As the OKV SSH Administrator:
 
 When you login to Oracle Key Vault console for the first time, you will be asked to change the password to your own.
 
@@ -195,9 +195,9 @@ When you login to Oracle Key Vault console for the first time, you will be asked
     
     ![Key Vault](./images/okv_ssh-020.png "Copy Enrollment Token")
 
-# As the owner of the remote server:
-
 ## Task 7: Download the OKV Client binaries
+
+# As the owner of the remote server:
 
 - Navigate to the OKV home page, do not login; click on **Endpoint Enrollment and Software Download** link
     
